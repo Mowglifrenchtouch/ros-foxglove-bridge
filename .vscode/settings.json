@@ -11,5 +11,6 @@
     "build/": true,
     "install/": true,
     "log/": true
-  }
+  },
+  "idf.pythonInstallPath": "/usr/bin/python3"
 }
