@@ -73,8 +73,11 @@ void from_json(const nlohmann::json& j, ParameterValue& p) {
 }
 
 void to_json(nlohmann::json& j, const Parameter& p) {
-  to_json(j["value"], p.getValue());
   j["name"] = p.getName();
+  if (p.getType() == ParameterType::PARAMETER_NOT_SET) {
+    return;
+  }
+  to_json(j["value"], p.getValue());
   if (p.getType() == ParameterType::PARAMETER_BYTE_ARRAY) {
     j["type"] = "byte_array";
   } else if (p.getType() == ParameterType::PARAMETER_DOUBLE) {
@@ -127,8 +130,8 @@ void to_json(nlohmann::json& j, const Service& service) {
     {"id", service.id},
     {"name", service.name},
     {"type", service.type},
-    {"requestSchema", service.requestSchema},
-    {"responseSchema", service.responseSchema},
+    {"request", {{"schema", service.requestSchema}}},
+    {"response", {{"schema", service.responseSchema}}},
   };
 }
 
@@ -136,8 +139,24 @@ void from_json(const nlohmann::json& j, Service& p) {
   p.id = j["id"].get<ServiceId>();
   p.name = j["name"].get<std::string>();
   p.type = j["type"].get<std::string>();
-  p.requestSchema = j["requestSchema"].get<std::string>();
-  p.responseSchema = j["responseSchema"].get<std::string>();
+
+  if (j.find("request") != j.end() && j["request"].find("schema") != j["request"].end()) {
+    p.requestSchema = j["request"]["schema"].get<std::string>();
+  } else if (j.find("requestSchema") != j.end()) {
+    throw std::runtime_error("Field 'requestSchema' (found in service " + p.name +
+                             ") is deprecated. Use 'request' instead.");
+  } else {
+    throw std::runtime_error("Service '" + p.name + "' has no request schema");
+  }
+
+  if (j.find("response") != j.end() && j["response"].find("schema") != j["response"].end()) {
+    p.responseSchema = j["response"]["schema"].get<std::string>();
+  } else if (j.find("responseSchema") != j.end()) {
+    throw std::runtime_error("Field 'responseSchema' (found in service " + p.name +
+                             ") is deprecated. Use 'response' instead.");
+  } else {
+    throw std::runtime_error("Service '" + p.name + "' has no response schema");
+  }
 }
 
 void ServiceResponse::read(const uint8_t* data, size_t dataLength) {
