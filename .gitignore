@@ -38,3 +38,21 @@ log/
 
 # Data cache
 data/
+# Docker build cache
+.buildx-cache/
+.buildx-cache-new/
+
+# Logs
+*.log
+
+# Temp files
+tmp/
+*.tmp
+
+# ROS build
+build/
+devel/
+install/
+
+# VSCode
+.vscode/

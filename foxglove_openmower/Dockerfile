@@ -32,16 +32,30 @@ ARG ARM64_MAX_JOBS=4
 RUN sed -i 's/output="screen"/unless="\$\(optenv OM_NO_COMMS True\)" output="screen"/g' \
     /opt/open_mower_ros/src/open_mower/launch/include/_comms.launch
 
-# Ajout Foxglove bridge dans le workspace ROS existant
+# Patch xbot_positioning pour filtrer les wheel ticks implausibles
+COPY foxglove_openmower/patch.sh /tmp/patch.sh
+RUN chmod +x /tmp/patch.sh && /tmp/patch.sh
+
+# Install rosserial_server
+RUN mkdir -p /home/ubuntu/rosserial/src && \
+    cd /home/ubuntu/rosserial/src && \
+    git clone https://github.com/tongtybj/rosserial && \
+    cd rosserial && \
+    git checkout rosservice_server
+
+RUN source /opt/ros/noetic/setup.bash && \
+    cd /home/ubuntu/rosserial && \
+    catkin_make -DCMAKE_INSTALL_PREFIX=/opt/ros/noetic install --only-pkg-with-deps rosserial_server
+
+# Add Foxglove bridge + slic3r + mowgli package
 WORKDIR /opt/open_mower_ros/src
 RUN git clone --branch v2 https://github.com/Mowglifrenchtouch/ros-foxglove-bridge.git foxglove_bridge && \
     git clone https://github.com/ClemensElflein/slic3r_coverage_planner.git slic3r_coverage_planner && \
     git clone https://github.com/Mowglifrenchtouch/Mowgli_ROS_Package.git && \
     mv Mowgli_ROS_Package/mowgli . && \
-    rm -rf Mowgli_ROS_Package && \
-    source /opt/ros/noetic/setup.bash
+    rm -rf Mowgli_ROS_Package
 
-# Build du workspace complet
+# Build full workspace
 WORKDIR /opt/open_mower_ros
 RUN source /opt/ros/noetic/setup.bash && \
     ccache -z && \
@@ -59,12 +73,19 @@ RUN source /opt/ros/noetic/setup.bash && \
       JOBS=2; LOAD=2; \
     fi && \
     echo "Building for $TARGETARCH with $CORES cores visible, using -j${JOBS} -l${LOAD}" && \
-    catkin_make -j${JOBS} -l${LOAD} || \
-    (echo "===== CMakeError.log =====" && cat /opt/open_mower_ros/build/CMakeFiles/CMakeError.log && \
-     echo "===== CMakeOutput.log =====" && cat /opt/open_mower_ros/build/CMakeFiles/CMakeOutput.log && false)
+    catkin_make -j${JOBS} -l${LOAD} && \
+    ccache -s
 
-# Script de démarrage
-COPY foxglove_openmower/scripts/start-foxglove.sh /usr/local/bin/start-foxglove.sh
-RUN chmod +x /usr/local/bin/start-foxglove.sh
+# Startup scripts
+COPY foxglove_openmower/scripts/start_foxglove.sh /usr/local/bin/foxglove
+COPY foxglove_openmower/scripts/start_mowgli.sh /home/ubuntu/scripts/start_mowgli.sh
+COPY foxglove_openmower/scripts/start_gps.sh /home/ubuntu/scripts/start_gps.sh
+COPY foxglove_openmower/openmower_entrypoint.sh /openmower_entrypoint.sh
 
-CMD ["/usr/local/bin/start-foxglove.sh"]
+RUN chmod +x /openmower_entrypoint.sh && \
+    chmod +x /usr/local/bin/foxglove && \
+    chmod +x /home/ubuntu/scripts/start_mowgli.sh&& \
+    chmod +x /home/ubuntu/scripts/start_gps.sh
+
+# défaut : OpenMower/Mowgli
+CMD ["/home/ubuntu/scripts/start_mowgli.sh"]
