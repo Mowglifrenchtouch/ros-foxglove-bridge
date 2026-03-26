@@ -80,7 +80,6 @@ RUN source /opt/ros/noetic/setup.bash && \
 COPY foxglove_openmower/scripts/start_foxglove.sh /usr/local/bin/foxglove
 COPY foxglove_openmower/scripts/start_mowgli.sh /home/ubuntu/scripts/start_mowgli.sh
 COPY foxglove_openmower/scripts/start_gps.sh /home/ubuntu/scripts/start_gps.sh
-COPY foxglove_openmower/openmower_entrypoint.sh /openmower_entrypoint.sh
 
 RUN chmod +x /openmower_entrypoint.sh && \
     chmod +x /usr/local/bin/foxglove && \

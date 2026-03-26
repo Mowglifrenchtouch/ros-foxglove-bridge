@@ -1,730 +1,1161 @@
 #0 building with "exciting_franklin" instance using docker-container driver
 
 #1 [internal] load build definition from Dockerfile
-#1 transferring dockerfile: 2.98kB done
+#1 transferring dockerfile: 3.25kB done
 #1 DONE 0.0s
 
-#2 [auth] clemenselflein/open_mower_ros:pull token for ghcr.io
-#2 DONE 0.0s
+#2 [linux/amd64 internal] load metadata for ghcr.io/clemenselflein/open_mower_ros:latest
+#2 ...
 
-#3 [internal] load metadata for ghcr.io/clemenselflein/open_mower_ros:latest
-#3 DONE 0.7s
+#3 [auth] clemenselflein/open_mower_ros:pull token for ghcr.io
+#3 DONE 0.0s
 
-#4 [internal] load .dockerignore
-#4 transferring context: 2B done
-#4 DONE 0.0s
+#4 [linux/arm64 internal] load metadata for ghcr.io/clemenselflein/open_mower_ros:latest
+#4 ...
 
-#5 [ 1/10] FROM ghcr.io/clemenselflein/open_mower_ros:latest@sha256:0e05bb6e72dfc6e4c18abfbeba8b9ebbcd4934f3dce61b2f4265dd26dc62f5eb
-#5 resolve ghcr.io/clemenselflein/open_mower_ros:latest@sha256:0e05bb6e72dfc6e4c18abfbeba8b9ebbcd4934f3dce61b2f4265dd26dc62f5eb done
+#2 [linux/amd64 internal] load metadata for ghcr.io/clemenselflein/open_mower_ros:latest
+#2 DONE 0.8s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
 #5 DONE 0.0s
 
-#6 [ 2/10] RUN ln -snf /usr/share/zoneinfo/Europe/Paris /etc/localtime && echo Europe/Paris > /etc/timezone
-#6 CACHED
+#4 [linux/arm64 internal] load metadata for ghcr.io/clemenselflein/open_mower_ros:latest
+#4 DONE 0.8s
 
-#7 [ 4/10] RUN sed -i 's/output="screen"/unless="\$\(optenv OM_NO_COMMS True\)" output="screen"/g'     /opt/open_mower_ros/src/open_mower/launch/include/_comms.launch
-#7 CACHED
+#6 importing cache manifest from local:8389032556224021277
+#6 inferred cache manifest type: application/vnd.oci.image.manifest.v1+json done
+#6 DONE 0.0s
 
-#8 [ 3/10] RUN apt-get update && apt-get install -y     git     build-essential     python3-rosdep     python3-catkin-tools     ros-noetic-ros-babel-fish     nlohmann-json3-dev     ccache  && rm -rf /var/lib/apt/lists/*
+#7 [linux/amd64  1/17] FROM ghcr.io/clemenselflein/open_mower_ros:latest@sha256:0e05bb6e72dfc6e4c18abfbeba8b9ebbcd4934f3dce61b2f4265dd26dc62f5eb
+#7 resolve ghcr.io/clemenselflein/open_mower_ros:latest@sha256:0e05bb6e72dfc6e4c18abfbeba8b9ebbcd4934f3dce61b2f4265dd26dc62f5eb 0.0s done
+#7 DONE 0.0s
+
+#8 [linux/amd64  2/17] RUN ln -snf /usr/share/zoneinfo/Europe/Paris /etc/localtime && echo Europe/Paris > /etc/timezone
 #8 CACHED
 
-#9 [ 5/10] WORKDIR /opt/open_mower_ros/src
+#9 [linux/amd64  3/17] RUN apt-get update && apt-get install -y     git     build-essential     python3-rosdep     python3-catkin-tools     ros-noetic-ros-babel-fish     nlohmann-json3-dev     ccache  && rm -rf /var/lib/apt/lists/*
 #9 CACHED
 
-#10 [internal] load build context
-#10 transferring context: 150B done
+#10 [linux/arm64  1/17] FROM ghcr.io/clemenselflein/open_mower_ros:latest@sha256:0e05bb6e72dfc6e4c18abfbeba8b9ebbcd4934f3dce61b2f4265dd26dc62f5eb
+#10 resolve ghcr.io/clemenselflein/open_mower_ros:latest@sha256:0e05bb6e72dfc6e4c18abfbeba8b9ebbcd4934f3dce61b2f4265dd26dc62f5eb 0.0s done
 #10 DONE 0.0s
 
-#11 [ 6/10] RUN git clone --branch v2 https://github.com/Mowglifrenchtouch/ros-foxglove-bridge.git foxglove_bridge &&     git clone https://github.com/ClemensElflein/slic3r_coverage_planner.git slic3r_coverage_planner &&     git clone https://github.com/Mowglifrenchtouch/Mowgli_ROS_Package.git &&     mv Mowgli_ROS_Package/mowgli . &&     rm -rf Mowgli_ROS_Package &&     source /opt/ros/noetic/setup.bash &&     echo "===== mowgli tree =====" &&     find /opt/open_mower_ros/src/mowgli -maxdepth 3 -type f | sort &&     echo "===== mowgli package.xml =====" &&     cat /opt/open_mower_ros/src/mowgli/package.xml &&     echo "===== mowgli CMakeLists.txt =====" &&     cat /opt/open_mower_ros/src/mowgli/CMakeLists.txt &&     echo "===== mowgli ChargeCtrlSrv.srv =====" &&     cat /opt/open_mower_ros/src/mowgli/srv/ChargeCtrlSrv.srv
-#11 0.120 Cloning into 'foxglove_bridge'...
-#11 1.375 Cloning into 'slic3r_coverage_planner'...
-#11 2.296 Cloning into 'Mowgli_ROS_Package'...
-#11 4.201 ===== mowgli tree =====
-#11 4.234 /opt/open_mower_ros/src/mowgli/CMakeLists.txt
-#11 4.234 /opt/open_mower_ros/src/mowgli/package.xml
-#11 4.234 /opt/open_mower_ros/src/mowgli/srv/ChargeCtrlSrv.srv
-#11 4.236 ===== mowgli package.xml =====
-#11 4.254 <?xml version="1.0"?>
-#11 4.254 <package format="2">
-#11 4.254   <name>mowgli</name>
-#11 4.254   <version>0.0.0</version>
-#11 4.254   <description>The mowgli messages package</description>
-#11 4.254 
-#11 4.254 
-#11 4.254   <maintainer email="clemens1@familie-elflein.de">Clemens Elflein</maintainer>
-#11 4.254   <license>CC BY-NC-SA 4.0</license>
-#11 4.254 
-#11 4.254   <url type="website">https://github.com/ClemensElflein/OpenMower</url>
-#11 4.254 
-#11 4.254   <buildtool_depend>catkin</buildtool_depend>
-#11 4.254   <build_depend>message_generation</build_depend>
-#11 4.254   <build_export_depend>message_generation</build_export_depend>
-#11 4.254   <exec_depend>message_runtime</exec_depend>
-#11 4.254   <export>
-#11 4.254   </export>
-#11 4.254 </package>===== mowgli CMakeLists.txt =====
-#11 4.279 cmake_minimum_required(VERSION 3.0.2)
-#11 4.279 project(mowgli)
-#11 4.279 
-#11 4.279 find_package(catkin REQUIRED COMPONENTS
-#11 4.279 #        std_msgs
-#11 4.279         message_generation)
-#11 4.279 
-#11 4.279 
-#11 4.279 #add_message_files(
-#11 4.279 #        FILES
-#11 4.279 #        Status.msg
-#11 4.279 #        ImuRaw.msg
-#11 4.279 #        ESCStatus.msg
-#11 4.279 #        HighLevelStatus.msg
-#11 4.279 #        Perimeter.msg
-#11 4.279 #)
-#11 4.279 
-#11 4.279 add_service_files(
-#11 4.279         FILES
-#11 4.279 	  ChargeCtrlSrv.srv
-#11 4.279 )
-#11 4.279 
-#11 4.279 ## Generate added messages and services with any dependencies listed here
-#11 4.279 generate_messages()
-#11 4.279 #        DEPENDENCIES
-#11 4.279 #        std_msgs
-#11 4.279 #)
-#11 4.279 
-#11 4.279 catkin_package(
-#11 4.279         CATKIN_DEPENDS message_runtime
-#11 4.279 )===== mowgli ChargeCtrlSrv.srv =====
-#11 4.298 float32 eoc         # End of charge voltage
-#11 DONE 4.3s
+#11 [internal] load build context
+#11 transferring context: 380B done
+#11 DONE 0.0s
 
-#12 [ 7/10] WORKDIR /opt/open_mower_ros
-#12 DONE 0.0s
+#12 [linux/arm64 14/17] COPY foxglove_openmower/scripts/start_mowgli.sh /home/ubuntu/scripts/start_mowgli.sh
+#12 CACHED
 
-#13 [ 8/10] RUN source /opt/ros/noetic/setup.bash &&     ccache -z &&     rosdep update || true &&     rosdep install -y --from-paths src --ignore-src       --skip-keys="slic3r_coverage_planner paho-mqtt-cpp" || true &&     CORES=$(nproc) &&     if [ "arm64" = "amd64" ]; then       JOBS=$(( CORES < AMD64_MAX_JOBS ? CORES : AMD64_MAX_JOBS ));       LOAD=$JOBS;     elif [ "arm64" = "arm64" ]; then       JOBS=$(( CORES < ARM64_MAX_JOBS ? CORES : ARM64_MAX_JOBS ));       LOAD=$JOBS;     else       JOBS=2; LOAD=2;     fi &&     echo "Building for arm64 with $CORES cores visible, using -j${JOBS} -l${LOAD}" &&     catkin_make -j${JOBS} -l${LOAD} ||     (echo "===== CMakeError.log =====" && cat /opt/open_mower_ros/build/CMakeFiles/CMakeError.log &&      echo "===== CMakeOutput.log =====" && cat /opt/open_mower_ros/build/CMakeFiles/CMakeOutput.log && false)
-#13 1.191 Statistics zeroed
-#13 39.97 reading in sources list data from /etc/ros/rosdep/sources.list.d
-#13 39.97 Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/osx-homebrew.yaml
-#13 39.97 Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/base.yaml
-#13 39.97 Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/python.yaml
-#13 39.97 Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/ruby.yaml
-#13 39.97 Hit https://raw.githubusercontent.com/ros/rosdistro/master/releases/fuerte.yaml
-#13 39.97 Query rosdistro index https://raw.githubusercontent.com/ros/rosdistro/master/index-v4.yaml
-#13 39.97 Skip end-of-life distro "ardent"
-#13 39.97 Skip end-of-life distro "bouncy"
-#13 39.97 Skip end-of-life distro "crystal"
-#13 39.97 Skip end-of-life distro "dashing"
-#13 39.97 Skip end-of-life distro "eloquent"
-#13 39.97 Skip end-of-life distro "foxy"
-#13 39.97 Skip end-of-life distro "galactic"
-#13 39.97 Skip end-of-life distro "groovy"
-#13 39.97 Add distro "humble"
-#13 39.97 Skip end-of-life distro "hydro"
-#13 39.97 Skip end-of-life distro "indigo"
-#13 39.97 Skip end-of-life distro "iron"
-#13 39.97 Skip end-of-life distro "jade"
-#13 39.97 Add distro "jazzy"
-#13 39.97 Add distro "kilted"
-#13 39.97 Skip end-of-life distro "kinetic"
-#13 39.97 Skip end-of-life distro "lunar"
-#13 39.97 Skip end-of-life distro "melodic"
-#13 39.97 Skip end-of-life distro "noetic"
-#13 39.97 Add distro "rolling"
-#13 39.97 updated cache in /root/.ros/rosdep/sources.cache
-#13 39.97 Warning: running 'rosdep update' as root is not recommended.
-#13 39.97   You should run 'sudo rosdep fix-permissions' and invoke 'rosdep update' again without sudo.
-#13 43.14 #All required rosdeps installed successfully
-#13 43.24 Building for arm64 with 24 cores visible, using -j4 -l4
-#13 44.42 -- Using CATKIN_DEVEL_PREFIX: /opt/open_mower_ros/devel
-#13 44.42 -- Using CMAKE_PREFIX_PATH: /opt/ros/noetic
-#13 44.42 -- This workspace overlays: /opt/ros/noetic
-#13 44.64 -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
-#13 44.64 -- Using PYTHON_EXECUTABLE: /usr/bin/python3
-#13 44.64 -- Using Debian Python package layout
-#13 44.64 -- Using empy: /usr/lib/python3/dist-packages/em.py
-#13 45.72 -- Using CATKIN_ENABLE_TESTING: ON
-#13 45.72 -- Call enable_testing()
-#13 45.74 -- Using CATKIN_TEST_RESULTS_DIR: /opt/open_mower_ros/build/test_results
-#13 45.83 -- Forcing gtest/gmock from source, though one was otherwise available.
-#13 45.83 -- Found gtest sources under '/usr/src/googletest': gtests will be built
-#13 45.83 -- Found gmock sources under '/usr/src/googletest': gmock will be built
-#13 46.07 -- Found PythonInterp: /usr/bin/python3 (found version "3.8.10") 
-#13 46.09 -- Using Python nosetests: /usr/bin/nosetests3
-#13 46.50 -- catkin 0.8.12
-#13 46.50 -- BUILD_SHARED_LIBS is on
-#13 48.01 -- BUILD_SHARED_LIBS is on
-#13 48.01 -- Using CATKIN_BLACKLIST_PACKAGES: slic3r_coverage_planner
-#13 50.01 WARNING: package "xbot_monitoring" should not depend on metapackage "grid_map" but on its packages instead
-#13 50.04 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#13 50.04 -- ~~  traversing 26 packages in topological order:
-#13 50.04 -- ~~  - mowgli
-#13 50.04 -- ~~  - xbot_framework
-#13 50.04 -- ~~  - xbot_msgs
-#13 50.04 -- ~~  - xbot_rpc
-#13 50.04 -- ~~  - xesc (metapackage)
-#13 50.08 -- ~~  - xesc_interface
-#13 50.08 -- ~~  - xesc_msgs
-#13 50.08 -- ~~  - mower_msgs
-#13 50.08 -- ~~  - ntrip_client
-#13 50.08 -- ~~  - foxglove_bridge
-#13 50.08 -- ~~  - mower_map
-#13 50.08 -- ~~  - mower_comms_v2
-#13 50.08 -- ~~  - vesc_driver
-#13 50.08 -- ~~  - ftc_local_planner
-#13 50.08 -- ~~  - xbot_driver_gps
-#13 50.08 -- ~~  - xbot_monitoring
-#13 50.08 -- ~~  - xbot_positioning
-#13 50.08 -- ~~  - mower_logic
-#13 50.08 -- ~~  - mower_simulation
-#13 50.08 -- ~~  - open_mower
-#13 50.08 -- ~~  - mower_utils
-#13 50.08 -- ~~  - xbot_remote
-#13 50.08 -- ~~  - xesc_2040_driver
-#13 50.09 -- ~~  - xesc_yfr4_driver
-#13 50.09 -- ~~  - xesc_driver
-#13 50.09 -- ~~  - mower_comms_v1
-#13 50.09 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#13 50.09 -- +++ processing catkin package: 'mowgli'
-#13 50.09 -- ==> add_subdirectory(mowgli)
-#13 50.12 -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
-#13 50.98 -- mowgli: 0 messages, 1 services
-#13 52.18 -- +++ processing catkin package: 'xbot_framework'
-#13 52.18 -- ==> add_subdirectory(lib/xbot_framework)
-#13 53.06 -- Using default lwjson_opts.h file
-#13 53.97 -- Using the multi-header code from /opt/open_mower_ros/build/_deps/json-src/include/
-#13 56.35 -- Build spdlog: 1.14.0
-#13 56.36 -- Build type: Release
-#13 71.15 Requirement already satisfied: cbor2==5.6.3 in ./lib/xbot_framework/codegen/.venv/lib/python3.8/site-packages (from -r /opt/open_mower_ros/src/lib/xbot_framework/codegen/requirements.txt (line 1)) (5.6.3)
-#13 71.19 Requirement already satisfied: cogapp==3.4.1 in ./lib/xbot_framework/codegen/.venv/lib/python3.8/site-packages (from -r /opt/open_mower_ros/src/lib/xbot_framework/codegen/requirements.txt (line 2)) (3.4.1)
-#13 71.58 -- Building Service Lib
-#13 71.59 -- Building Service Interface Lib
-#13 71.65 -- +++ processing catkin package: 'xbot_msgs'
-#13 71.65 -- ==> add_subdirectory(lib/xbot_msgs)
-#13 71.75 -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
-#13 73.38 -- xbot_msgs: 10 messages, 1 services
-#13 74.63 -- +++ processing catkin package: 'xbot_rpc'
-#13 74.63 -- ==> add_subdirectory(lib/xbot_rpc)
-#13 74.72 -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
-#13 76.31 -- xbot_rpc: 3 messages, 1 services
-#13 77.54 -- +++ processing catkin metapackage: 'xesc'
-#13 77.54 -- ==> add_subdirectory(lib/xesc_ros/xesc)
-#13 77.92 -- +++ processing catkin package: 'xesc_interface'
-#13 77.92 -- ==> add_subdirectory(lib/xesc_ros/xesc_interface)
-#13 79.15 -- +++ processing catkin package: 'xesc_msgs'
-#13 79.15 -- ==> add_subdirectory(lib/xesc_ros/xesc_msgs)
-#13 79.23 -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
-#13 80.84 -- xesc_msgs: 2 messages, 0 services
-#13 82.04 -- +++ processing catkin package: 'mower_msgs'
-#13 82.04 -- ==> add_subdirectory(mower_msgs)
-#13 82.12 -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
-#13 83.77 -- mower_msgs: 8 messages, 5 services
-#13 85.04 -- +++ processing catkin package: 'ntrip_client'
-#13 85.04 -- ==> add_subdirectory(lib/ntrip_client)
-#13 86.97 -- Installing devel-space wrapper /opt/open_mower_ros/src/lib/ntrip_client/scripts/ntrip_ros.py to /opt/open_mower_ros/devel/lib/ntrip_client
-#13 87.91 -- +++ processing catkin package: 'foxglove_bridge'
-#13 87.91 -- ==> add_subdirectory(foxglove_bridge)
-#13 87.99 -- Found ZLIB: /usr/lib/aarch64-linux-gnu/libz.so (found version "1.2.11") 
-#13 87.99 -- Using standalone ASIO
-#13 88.00 -- Check if the system is big endian
-#13 88.00 -- Searching 16 bit integer
-#13 88.00 -- Check size of unsigned short
-#13 88.85 -- Check size of unsigned short - done
-#13 88.86 -- Using unsigned short
-#13 89.64 -- Check if the system is big endian - little endian
-#13 89.96 -- ROS_VERSION: 1
-#13 89.96 -- ROS_DISTRO: noetic
-#13 89.96 -- ROS_ROOT: /opt/ros/noetic/share/ros
-#13 89.96 -- Building with catkin
-#13 90.19 -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
-#13 92.11 -- Building tests with catkin
-#13 92.82 -- Found GTest: /usr/lib/aarch64-linux-gnu/libgtest.a  
-#13 92.85 -- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake (found version "1.71.0") found components: system 
-#13 92.87 -- +++ processing catkin package: 'mower_map'
-#13 92.87 -- ==> add_subdirectory(mower_map)
-#13 93.13 -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
-#13 96.02 -- mower_map: 1 messages, 7 services
-#13 97.27 -- +++ processing catkin package: 'mower_comms_v2'
-#13 97.27 -- ==> add_subdirectory(mower_comms_v2)
-#13 97.56 -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
-#13 98.46 -- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake (found version "1.71.0")  
-#13 99.67 -- +++ processing catkin package: 'vesc_driver'
-#13 99.67 -- ==> add_subdirectory(lib/xesc_ros/vesc_driver)
-#13 101.8 -- +++ processing catkin package: 'ftc_local_planner'
-#13 101.8 -- ==> add_subdirectory(lib/ftc_local_planner)
-#13 102.1 -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
-#13 104.5 -- ftc_local_planner: 1 messages, 1 services
-#13 106.5 -- +++ processing catkin package: 'xbot_driver_gps'
-#13 106.5 -- ==> add_subdirectory(lib/xbot_driver_gps)
-#13 107.0 -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
-#13 109.3 Source dir of NemaTode = /opt/open_mower_ros/build/lib/xbot_driver_gps/NemaTode/src/NemaTode
-#13 109.4 -- +++ processing catkin package: 'xbot_monitoring'
-#13 109.4 -- ==> add_subdirectory(lib/xbot_monitoring)
-#13 109.7 -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
-#13 112.0 -- +++ processing catkin package: 'xbot_positioning'
-#13 112.0 -- ==> add_subdirectory(lib/xbot_positioning)
-#13 112.3 -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
-#13 114.1 -- xbot_positioning: 1 messages, 2 services
-#13 115.3 -- +++ processing catkin package: 'mower_logic'
-#13 115.3 -- ==> add_subdirectory(mower_logic)
-#13 115.4 -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
-#13 117.9 -- mower_logic: 1 messages, 0 services
-#13 119.3 -- +++ processing catkin package: 'mower_simulation'
-#13 119.3 -- ==> add_subdirectory(mower_simulation)
-#13 119.5 -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
-#13 121.9 -- +++ processing catkin package: 'open_mower'
-#13 121.9 -- ==> add_subdirectory(open_mower)
-#13 123.4 -- +++ processing catkin package: 'mower_utils'
-#13 123.4 -- ==> add_subdirectory(mower_utils)
-#13 125.5 -- +++ processing catkin package: 'xbot_remote'
-#13 125.5 -- ==> add_subdirectory(lib/xbot_remote)
-#13 127.5 -- +++ processing catkin package: 'xesc_2040_driver'
-#13 127.5 -- ==> add_subdirectory(lib/xesc_ros/xesc_2040_driver)
-#13 129.6 -- +++ processing catkin package: 'xesc_yfr4_driver'
-#13 129.6 -- ==> add_subdirectory(lib/xesc_ros/xesc_yfr4_driver)
-#13 131.7 -- +++ processing catkin package: 'xesc_driver'
-#13 131.7 -- ==> add_subdirectory(lib/xesc_ros/xesc_driver)
-#13 134.0 -- +++ processing catkin package: 'mower_comms_v1'
-#13 134.0 -- ==> add_subdirectory(mower_comms_v1)
-#13 136.5 -- Configuring done
-#13 138.5 -- Generating done
-#13 138.7 -- Build files have been written to: /opt/open_mower_ros/build
-#13 139.1 Scanning dependencies of target _mowgli_generate_messages_check_deps_ChargeCtrlSrv
-#13 139.2 [  0%] Built target ulog
-#13 139.3 [  1%] Built target heatshrink
-#13 139.3 [  2%] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/spdlog.cpp.o
-#13 139.3 [  2%] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/stdout_sinks.cpp.o
-#13 139.6 [  2%] Built target _mowgli_generate_messages_check_deps_ChargeCtrlSrv
-#13 139.7 [  2%] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/color_sinks.cpp.o
-#13 139.8 [  2%] Built target _xbot_msgs_generate_messages_check_deps_MapOverlayPolygon
-#13 139.9 [  2%] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/file_sinks.cpp.o
-#13 147.6 [  2%] Built target _xbot_msgs_generate_messages_check_deps_AbsolutePose
-#13 147.7 [  2%] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/async.cpp.o
-#13 148.3 [  3%] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/cfg.cpp.o
-#13 149.8 [  3%] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/bundled_fmtlib_format.cpp.o
-#13 154.0 [  3%] Built target geometry_msgs_generate_messages_nodejs
-#13 154.6 [  3%] Built target _xbot_msgs_generate_messages_check_deps_RegisterActionsSrv
-#13 155.2 [  3%] Built target _xbot_msgs_generate_messages_check_deps_MapOverlay
-#13 155.9 [  3%] Built target _xbot_msgs_generate_messages_check_deps_SensorDataString
-#13 156.5 [  3%] Built target _xbot_msgs_generate_messages_check_deps_WheelTick
-#13 156.7 [  3%] Built target std_msgs_generate_messages_nodejs
-#13 157.4 [  3%] Built target _xbot_msgs_generate_messages_check_deps_SensorDataDouble
-#13 158.0 [  3%] Built target _xbot_msgs_generate_messages_check_deps_SensorInfo
-#13 158.1 [  3%] Built target _xbot_msgs_generate_messages_check_deps_RobotState
-#13 158.6 [  3%] Built target _xbot_msgs_generate_messages_check_deps_MapSize
-#13 158.6 [  3%] Built target _xbot_msgs_generate_messages_check_deps_ActionInfo
-#13 158.8 [  3%] Built target geometry_msgs_generate_messages_lisp
-#13 158.9 [  3%] Built target std_msgs_generate_messages_lisp
-#13 159.0 [  3%] Built target geometry_msgs_generate_messages_cpp
-#13 159.1 [  3%] Built target std_msgs_generate_messages_cpp
-#13 159.3 [  3%] Built target std_msgs_generate_messages_eus
-#13 159.3 [  3%] Built target geometry_msgs_generate_messages_eus
-#13 159.5 [  3%] Built target geometry_msgs_generate_messages_py
-#13 159.5 [  3%] Built target std_msgs_generate_messages_py
-#13 160.1 [  3%] Built target _xbot_rpc_generate_messages_check_deps_RpcRequest
-#13 160.1 [  3%] Built target _xbot_rpc_generate_messages_check_deps_RegisterMethodsSrv
-#13 160.7 [  3%] Built target _xbot_rpc_generate_messages_check_deps_RpcResponse
-#13 160.8 [  3%] Built target _xbot_rpc_generate_messages_check_deps_RpcError
-#13 161.3 [  3%] Built target _xesc_msgs_generate_messages_check_deps_XescStateStamped
-#13 161.4 [  3%] Built target _xesc_msgs_generate_messages_check_deps_XescState
-#13 161.9 [  3%] Built target _mower_msgs_generate_messages_check_deps_Perimeter
-#13 162.0 [  3%] Built target _mower_msgs_generate_messages_check_deps_PerimeterControlSrv
-#13 162.5 [  3%] Built target _mower_msgs_generate_messages_check_deps_Emergency
-#13 162.6 [  3%] Built target _mower_msgs_generate_messages_check_deps_HighLevelControlSrv
-#13 163.1 [  3%] Built target _mower_msgs_generate_messages_check_deps_GPSControlSrv
-#13 163.2 [  3%] Built target _mower_msgs_generate_messages_check_deps_HighLevelStatus
-#13 163.7 [  3%] Built target _mower_msgs_generate_messages_check_deps_EmergencyStopSrv
-#13 163.8 [  3%] Built target _mower_msgs_generate_messages_check_deps_MowerControlSrv
-#13 164.3 [  3%] Built target _mower_msgs_generate_messages_check_deps_ESCStatus
-#13 164.4 [  3%] Built target _mower_msgs_generate_messages_check_deps_DockingSensor
-#13 164.9 [  3%] Built target _mower_msgs_generate_messages_check_deps_Power
-#13 165.0 [  3%] Built target _mower_msgs_generate_messages_check_deps_ImuRaw
-#13 165.2 Scanning dependencies of target foxglove_bridge_base
-#13 165.3 [  3%] Building CXX object foxglove_bridge/CMakeFiles/foxglove_bridge_base.dir/foxglove_bridge_base/src/base64.cpp.o
-#13 165.5 [  3%] Built target _mower_msgs_generate_messages_check_deps_Status
-#13 165.7 Scanning dependencies of target foxglove_bridge
-#13 165.8 [  3%] Building CXX object foxglove_bridge/CMakeFiles/foxglove_bridge.dir/ros1_foxglove_bridge/src/ros1_foxglove_bridge_node.cpp.o
-#13 168.1 [  3%] Building CXX object foxglove_bridge/CMakeFiles/foxglove_bridge_base.dir/foxglove_bridge_base/src/foxglove_bridge.cpp.o
-#13 168.6 [  4%] Building CXX object foxglove_bridge/CMakeFiles/foxglove_bridge_base.dir/foxglove_bridge_base/src/parameter.cpp.o
-#13 169.2 [  4%] Building CXX object foxglove_bridge/CMakeFiles/foxglove_bridge_base.dir/foxglove_bridge_base/src/serialization.cpp.o
-#13 169.5 [  4%] Linking CXX shared library /opt/open_mower_ros/devel/lib/libspdlog.so
-#13 170.1 [  4%] Built target spdlog
-#13 170.2 [  4%] Building CXX object foxglove_bridge/CMakeFiles/foxglove_bridge_base.dir/foxglove_bridge_base/src/server_factory.cpp.o
-#13 172.4 [  4%] Built target tf2_msgs_generate_messages_py
-#13 172.5 [  4%] Building CXX object foxglove_bridge/CMakeFiles/foxglove_bridge_base.dir/foxglove_bridge_base/src/test/test_client.cpp.o
-#13 176.9 [  4%] Linking CXX executable /opt/open_mower_ros/devel/lib/foxglove_bridge/foxglove_bridge
-#13 177.6 [  4%] Built target foxglove_bridge
-#13 177.7 Scanning dependencies of target actionlib_msgs_generate_messages_cpp
-#13 177.8 [  4%] Built target actionlib_msgs_generate_messages_cpp
-#13 177.9 [  5%] Building CXX object foxglove_bridge/CMakeFiles/foxglove_bridge_base.dir/foxglove_bridge_base/src/version.cpp.o
-#13 178.2 Scanning dependencies of target actionlib_generate_messages_cpp
-#13 178.3 [  5%] Built target actionlib_generate_messages_cpp
-#13 178.5 Scanning dependencies of target rosgraph_msgs_generate_messages_nodejs
-#13 178.6 [  5%] Built target rosgraph_msgs_generate_messages_nodejs
-#13 178.7 Scanning dependencies of target actionlib_msgs_generate_messages_py
-#13 178.8 [  5%] Built target actionlib_msgs_generate_messages_py
-#13 179.0 Scanning dependencies of target rosgraph_msgs_generate_messages_lisp
-#13 179.1 [  5%] Built target rosgraph_msgs_generate_messages_lisp
-#13 179.2 Scanning dependencies of target actionlib_msgs_generate_messages_eus
-#13 179.3 [  5%] Built target actionlib_msgs_generate_messages_eus
-#13 179.4 Scanning dependencies of target actionlib_generate_messages_lisp
-#13 179.6 [  5%] Built target actionlib_generate_messages_lisp
-#13 179.7 Scanning dependencies of target roscpp_generate_messages_lisp
-#13 179.8 [  5%] Built target roscpp_generate_messages_lisp
-#13 179.9 Scanning dependencies of target actionlib_generate_messages_py
-#13 180.0 [  5%] Built target actionlib_generate_messages_py
-#13 180.1 Scanning dependencies of target roscpp_generate_messages_py
-#13 180.3 [  5%] Built target roscpp_generate_messages_py
-#13 180.4 Scanning dependencies of target actionlib_generate_messages_nodejs
-#13 180.5 [  5%] Built target actionlib_generate_messages_nodejs
-#13 180.6 Scanning dependencies of target actionlib_generate_messages_eus
-#13 180.7 [  5%] Built target actionlib_generate_messages_eus
-#13 180.8 Scanning dependencies of target rosgraph_msgs_generate_messages_cpp
-#13 180.9 [  5%] Built target rosgraph_msgs_generate_messages_cpp
-#13 181.1 Scanning dependencies of target rosgraph_msgs_generate_messages_eus
-#13 181.2 [  5%] Built target rosgraph_msgs_generate_messages_eus
-#13 181.3 Scanning dependencies of target std_srvs_generate_messages_py
-#13 181.4 [  5%] Built target std_srvs_generate_messages_py
-#13 181.5 Scanning dependencies of target roscpp_generate_messages_nodejs
-#13 181.6 [  5%] Built target roscpp_generate_messages_nodejs
-#13 181.8 Scanning dependencies of target roscpp_generate_messages_cpp
-#13 181.9 [  5%] Built target roscpp_generate_messages_cpp
-#13 182.0 Scanning dependencies of target roscpp_generate_messages_eus
-#13 182.1 [  5%] Built target roscpp_generate_messages_eus
-#13 182.2 Scanning dependencies of target std_srvs_generate_messages_cpp
-#13 182.3 [  5%] Built target std_srvs_generate_messages_cpp
-#13 182.4 Scanning dependencies of target std_srvs_generate_messages_eus
-#13 182.5 [  5%] Built target std_srvs_generate_messages_eus
-#13 182.7 Scanning dependencies of target std_srvs_generate_messages_lisp
-#13 182.8 [  5%] Built target std_srvs_generate_messages_lisp
-#13 182.9 Scanning dependencies of target std_srvs_generate_messages_nodejs
-#13 183.0 [  5%] Built target std_srvs_generate_messages_nodejs
-#13 183.2 Scanning dependencies of target rosgraph_msgs_generate_messages_py
-#13 183.3 [  5%] Built target rosgraph_msgs_generate_messages_py
-#13 183.4 Scanning dependencies of target actionlib_msgs_generate_messages_lisp
-#13 183.5 [  5%] Built target actionlib_msgs_generate_messages_lisp
-#13 183.6 Scanning dependencies of target actionlib_msgs_generate_messages_nodejs
-#13 183.7 [  5%] Built target actionlib_msgs_generate_messages_nodejs
-#13 184.0 [  5%] Built target tf2_msgs_generate_messages_nodejs
-#13 184.2 [  5%] Built target tf2_msgs_generate_messages_cpp
-#13 184.4 [  5%] Built target tf_generate_messages_eus
-#13 184.7 [  5%] Built target tf_generate_messages_nodejs
-#13 184.9 [  5%] Built target tf_generate_messages_cpp
-#13 185.1 [  5%] Built target topic_tools_generate_messages_py
-#13 185.4 [  5%] Built target tf_generate_messages_py
-#13 185.6 [  5%] Built target topic_tools_generate_messages_nodejs
-#13 186.2 [  5%] Built target _mower_map_generate_messages_check_deps_SetNavPointSrv
-#13 186.8 [  5%] Built target _mower_map_generate_messages_check_deps_ClearNavPointSrv
-#13 187.4 [  5%] Built target _mower_map_generate_messages_check_deps_ClearMapSrv
-#13 187.5 [  5%] Built target _mower_map_generate_messages_check_deps_SetDockingPointSrv
-#13 188.0 [  5%] Built target _mower_map_generate_messages_check_deps_MapArea
-#13 188.1 [  5%] Built target _mower_map_generate_messages_check_deps_AddMowingAreaSrv
-#13 188.6 [  5%] Built target _mower_map_generate_messages_check_deps_GetDockingPointSrv
-#13 188.7 [  5%] Built target _mower_map_generate_messages_check_deps_GetMowingAreaSrv
-#13 188.9 [  5%] Built target topic_tools_generate_messages_lisp
-#13 188.9 [  5%] Built target nav_msgs_generate_messages_lisp
-#13 189.1 [  5%] Built target topic_tools_generate_messages_eus
-#13 189.1 [  5%] Built target tf_generate_messages_lisp
-#13 189.3 [  5%] Built target nav_msgs_generate_messages_py
-#13 189.4 [  5%] Built target tf2_msgs_generate_messages_eus
-#13 189.5 [  5%] Built target sensor_msgs_generate_messages_py
-#13 189.6 [  5%] Built target grid_map_msgs_generate_messages_lisp
-#13 189.8 [  5%] Built target grid_map_msgs_generate_messages_nodejs
-#13 189.8 [  5%] Built target tf2_msgs_generate_messages_lisp
-#13 190.0 [  5%] Built target grid_map_msgs_generate_messages_eus
-#13 190.0 [  5%] Built target nav_msgs_generate_messages_nodejs
-#13 190.2 [  5%] Built target sensor_msgs_generate_messages_cpp
-#13 190.3 [  5%] Built target sensor_msgs_generate_messages_nodejs
-#13 190.4 [  5%] Built target grid_map_msgs_generate_messages_py
-#13 190.5 [  8%] Built target mower_map_generate_messages_nodejs
-#13 190.7 [  8%] Built target nav_msgs_generate_messages_cpp
-#13 190.7 [  8%] Built target visualization_msgs_generate_messages_eus
-#13 190.9 [  8%] Built target sensor_msgs_generate_messages_eus
-#13 190.9 [  8%] Built target sensor_msgs_generate_messages_lisp
-#13 191.1 [  8%] Built target visualization_msgs_generate_messages_cpp
-#13 191.2 [  8%] Built target visualization_msgs_generate_messages_lisp
-#13 191.3 [  8%] Built target visualization_msgs_generate_messages_nodejs
-#13 191.4 [  8%] Built target grid_map_msgs_generate_messages_cpp
-#13 191.6 [  8%] Built target topic_tools_generate_messages_cpp
-#13 191.6 [  8%] Built target visualization_msgs_generate_messages_py
-#13 191.8 [ 10%] Built target mower_map_generate_messages_eus
-#13 191.9 [ 12%] Built target mower_map_generate_messages_cpp
-#13 192.0 [ 13%] Built target mower_map_generate_messages_lisp
-#13 192.1 [ 13%] Built target nav_msgs_generate_messages_eus
-#13 192.2 [ 13%] Built target geographic_msgs_generate_messages_cpp
-#13 192.3 [ 13%] Built target geographic_msgs_generate_messages_lisp
-#13 192.5 [ 13%] Built target geographic_msgs_generate_messages_eus
-#13 192.5 [ 13%] Built target diagnostic_msgs_generate_messages_py
-#13 192.7 [ 13%] Built target diagnostic_msgs_generate_messages_lisp
-#13 192.7 [ 13%] Built target diagnostic_msgs_generate_messages_nodejs
-#13 192.9 [ 13%] Built target diagnostic_msgs_generate_messages_cpp
-#13 193.0 [ 13%] Built target robot_localization_generate_messages_lisp
-#13 193.1 [ 13%] Built target diagnostic_msgs_generate_messages_eus
-#13 193.2 [ 13%] Built target geographic_msgs_generate_messages_nodejs
-#13 193.3 [ 13%] Built target uuid_msgs_generate_messages_cpp
-#13 193.4 [ 13%] Built target uuid_msgs_generate_messages_eus
-#13 193.6 [ 13%] Built target robot_localization_generate_messages_cpp
-#13 193.6 [ 13%] Built target uuid_msgs_generate_messages_nodejs
-#13 193.8 [ 13%] Built target robot_localization_generate_messages_py
-#13 193.8 [ 13%] Built target uuid_msgs_generate_messages_py
-#13 194.0 [ 13%] Built target uuid_msgs_generate_messages_lisp
-#13 194.1 [ 13%] Built target robot_localization_generate_messages_eus
-#13 194.2 [ 13%] Built target geographic_msgs_generate_messages_py
-#13 194.3 [ 13%] Built target robot_localization_generate_messages_nodejs
-#13 194.8 [ 13%] Built target _ftc_local_planner_generate_messages_check_deps_PID
-#13 194.9 [ 13%] Built target _ftc_local_planner_generate_messages_check_deps_PlannerGetProgress
-#13 195.1 [ 13%] Built target costmap_2d_generate_messages_py
-#13 195.1 [ 13%] Built target costmap_2d_generate_messages_nodejs
-#13 195.3 [ 13%] Built target costmap_2d_generate_messages_eus
-#13 195.3 [ 13%] Built target dynamic_reconfigure_generate_messages_cpp
-#13 195.5 [ 13%] Built target map_msgs_generate_messages_cpp
-#13 195.6 [ 13%] Built target dynamic_reconfigure_generate_messages_eus
-#13 195.7 [ 13%] Built target dynamic_reconfigure_gencfg
-#13 195.8 [ 13%] Built target dynamic_reconfigure_generate_messages_lisp
-#13 196.0 [ 13%] Built target map_msgs_generate_messages_eus
-#13 196.0 [ 13%] Built target map_msgs_generate_messages_lisp
-#13 196.2 [ 13%] Built target map_msgs_generate_messages_nodejs
-#13 196.2 [ 13%] Built target costmap_2d_gencfg
-#13 196.4 [ 13%] Built target map_msgs_generate_messages_py
-#13 196.5 [ 13%] Built target costmap_2d_generate_messages_lisp
-#13 196.6 [ 13%] Built target dynamic_reconfigure_generate_messages_nodejs
-#13 196.7 [ 13%] Built target ftc_local_planner_generate_messages_nodejs
-#13 196.9 [ 13%] Built target costmap_2d_generate_messages_cpp
-#13 196.9 [ 13%] Built target ftc_local_planner_gencfg
-#13 197.1 [ 14%] Built target ftc_local_planner_generate_messages_cpp
-#13 197.1 [ 16%] Built target ftc_local_planner_generate_messages_lisp
-#13 197.3 Scanning dependencies of target _catkin_empty_exported_target
-#13 197.3 [ 16%] Built target dynamic_reconfigure_generate_messages_py
-#13 197.4 [ 16%] Built target _catkin_empty_exported_target
-#13 197.6 [ 16%] Built target backward_forward_recovery
-#13 197.6 [ 16%] Performing update step for 'NemaTode'
-#13 197.9 [ 16%] Performing configure step for 'NemaTode'
-#13 198.1 -- Configuring done
-#13 198.2 [ 16%] Built target _xbot_positioning_generate_messages_check_deps_KalmanState
-#13 198.2 -- Generating done
-#13 198.2 -- Build files have been written to: /opt/open_mower_ros/build/lib/xbot_driver_gps/NemaTode/src/NemaTode-build
-#13 198.3 [ 16%] Performing build step for 'NemaTode'
-#13 198.4 make[3]: warning: jobserver unavailable: using -j1.  Add '+' to parent make rule.
-#13 198.8 [ 16%] Built target _xbot_positioning_generate_messages_check_deps_GPSControlSrv
-#13 198.8 [ 60%] Built target NemaTode
-#13 199.0 [ 80%] Built target demo_simple
-#13 199.3 [100%] Built target demo_advanced
-#13 199.3 [ 16%] Built target _xbot_positioning_generate_messages_check_deps_SetPoseSrv
-#13 199.5 [ 16%] Performing install step for 'NemaTode'
-#13 199.5 Skipping install step.
-#13 199.7 [ 17%] Completed 'NemaTode'
-#13 199.9 [ 17%] Built target _mower_logic_generate_messages_check_deps_CheckPoint
-#13 199.9 [ 18%] Built target NemaTode
-#13 200.1 [ 18%] Built target mower_logic_gencfg
-#13 200.2 [ 18%] Built target slic3r_coverage_planner_generate_messages_nodejs
-#13 200.4 [ 18%] Built target slic3r_coverage_planner_generate_messages_lisp
-#13 200.4 [ 18%] Built target mbf_msgs_generate_messages_eus
-#13 200.6 [ 18%] Built target mbf_msgs_generate_messages_cpp
-#13 200.6 [ 18%] Built target mbf_msgs_generate_messages_lisp
-#13 200.8 [ 18%] Built target slic3r_coverage_planner_generate_messages_eus
-#13 200.8 [ 18%] Built target slic3r_coverage_planner_generate_messages_cpp
-#13 201.0 [ 18%] Built target mbf_msgs_generate_messages_py
-#13 201.1 [ 18%] Built target mbf_msgs_generate_messages_nodejs
-#13 201.3 [ 18%] Built target slic3r_coverage_planner_generate_messages_py
-#13 201.3 [ 19%] Built target mower_simulation_gencfg
-#13 201.4 Scanning dependencies of target mowgli_generate_messages_lisp
-#13 201.4 Scanning dependencies of target mowgli_generate_messages_cpp
-#13 201.5 [ 19%] Generating C++ code from mowgli/ChargeCtrlSrv.srv
-#13 201.5 [ 19%] Generating Lisp code from mowgli/ChargeCtrlSrv.srv
-#13 202.0 [ 19%] Built target mowgli_generate_messages_lisp
-#13 202.2 Scanning dependencies of target mowgli_generate_messages_eus
-#13 202.3 [ 19%] Generating EusLisp code from mowgli/ChargeCtrlSrv.srv
-#13 202.9 [ 19%] Built target mowgli_generate_messages_cpp
-#13 202.9 [ 19%] Generating EusLisp manifest code for mowgli
-#13 203.0 Scanning dependencies of target mowgli_generate_messages_nodejs
-#13 203.1 [ 20%] Generating Javascript code from mowgli/ChargeCtrlSrv.srv
-#13 203.6 [ 20%] Built target mowgli_generate_messages_nodejs
-#13 203.7 Scanning dependencies of target mowgli_generate_messages_py
-#13 203.8 [ 20%] Generating Python code from SRV mowgli/ChargeCtrlSrv
-#13 204.7 [ 20%] Built target mowgli_generate_messages_eus
-#13 205.0 [ 24%] Built target xbot-service
-#13 205.2 [ 24%] Generating Python srv __init__.py for mowgli
-#13 205.2 [ 24%] Building CXX object lib/xbot_framework/libxbot-service-interface/CMakeFiles/xbot-service-interface.dir/src/Socket.cpp.o
-#13 206.3 [ 24%] Built target mowgli_generate_messages_py
-#13 206.5 [ 26%] Built target xbot_msgs_generate_messages_nodejs
-#13 206.7 [ 29%] Built target xbot_msgs_generate_messages_lisp
-#13 206.8 [ 31%] Building CXX object lib/xbot_framework/libxbot-service-interface/CMakeFiles/xbot-service-interface.dir/src/ServiceInterfaceBase.cpp.o
-#13 208.6 [ 34%] Built target xbot_msgs_generate_messages_cpp
-#13 208.7 [ 34%] Building CXX object lib/xbot_framework/libxbot-service-interface/CMakeFiles/xbot-service-interface.dir/src/ServiceDiscoveryImpl.cpp.o
-#13 219.9 [ 34%] Building CXX object lib/xbot_framework/libxbot-service-interface/CMakeFiles/xbot-service-interface.dir/src/ServiceIO.cpp.o
-#13 236.3 [ 36%] Built target xbot_msgs_generate_messages_eus
-#13 236.5 [ 40%] Built target xbot_msgs_generate_messages_py
-#13 236.6 [ 40%] Building CXX object lib/xbot_framework/libxbot-service-interface/CMakeFiles/xbot-service-interface.dir/src/PlotJugglerBridge.cpp.o
-#13 251.1 [ 40%] Building CXX object lib/xbot_framework/libxbot-service-interface/CMakeFiles/xbot-service-interface.dir/src/XbotServiceInterface.cpp.o
-#13 263.1 [ 41%] Built target xbot_rpc_generate_messages_eus
-#13 263.3 [ 42%] Built target xbot_rpc_generate_messages_py
-#13 263.4 [ 43%] Building CXX object lib/xbot_framework/libxbot-service-interface/CMakeFiles/xbot-service-interface.dir/src/RemoteLoggingReceiverImpl.cpp.o
-#13 265.0 [ 43%] Built target xbot_rpc_generate_messages_cpp
-#13 270.8 [ 44%] Built target xbot_rpc_generate_messages_lisp
-#13 270.8 [ 44%] Building CXX object lib/xbot_framework/libxbot-service-interface/CMakeFiles/xbot-service-interface.dir/src/HeatshrinkEncode.cpp.o
-#13 272.0 [ 45%] Built target xbot_rpc_generate_messages_nodejs
-#13 272.2 [ 45%] Built target xbot_rpc_gencpp
-#13 272.5 [ 47%] Built target xesc_msgs_generate_messages_lisp
-#13 272.7 [ 47%] Built target xesc_msgs_generate_messages_nodejs
-#13 273.9 [ 47%] Built target xesc_msgs_generate_messages_eus
-#13 274.2 [ 48%] Built target xesc_msgs_generate_messages_cpp
-#13 274.4 [ 49%] Built target xesc_msgs_generate_messages_py
-#13 274.7 [ 52%] Built target mower_msgs_generate_messages_py
-#13 275.9 [ 56%] Built target mower_msgs_generate_messages_cpp
-#13 276.1 [ 59%] Built target mower_msgs_generate_messages_lisp
-#13 276.4 [ 63%] Built target mower_msgs_generate_messages_eus
-#13 276.6 [ 66%] Built target mower_msgs_generate_messages_nodejs
-#13 276.8 [ 68%] Built target mower_map_generate_messages_py
-#13 277.1 [ 70%] Built target vesc_driver
-#13 277.3 [ 71%] Built target ftc_local_planner_generate_messages_py
-#13 277.6 [ 71%] Built target ftc_local_planner_generate_messages_eus
-#13 277.8 [ 73%] Built target driver_gps_node
-#13 277.9 [ 73%] Built target xbot_positioning_generate_messages_cpp
-#13 278.0 [ 74%] Built target xbot_positioning_generate_messages_nodejs
-#13 278.1 [ 75%] Built target xbot_positioning_generate_messages_eus
-#13 278.3 [ 77%] Built target xbot_positioning_generate_messages_lisp
-#13 278.4 [ 78%] Built target xbot_positioning_generate_messages_py
-#13 278.5 [ 78%] Built target mower_logic_generate_messages_lisp
-#13 278.6 [ 78%] Built target mower_logic_generate_messages_nodejs
-#13 278.7 [ 79%] Built target mower_logic_generate_messages_py
-#13 278.8 [ 79%] Built target mower_logic_generate_messages_eus
-#13 279.0 [ 80%] Built target mower_logic_generate_messages_cpp
-#13 279.1 Scanning dependencies of target xbot_pose_converter
-#13 279.1 [ 80%] Building CXX object mower_simulation/CMakeFiles/mower_simulation.dir/src/mower_simulation.cpp.o
-#13 279.3 [ 80%] Building CXX object mower_utils/CMakeFiles/xbot_pose_converter.dir/src/xbot_pose_converter.cpp.o
-#13 296.5 [ 80%] Linking CXX executable /opt/open_mower_ros/devel/lib/mower_utils/xbot_pose_converter
-#13 297.2 [ 80%] Built target xbot_pose_converter
-#13 310.3 [ 81%] Building CXX object mower_simulation/CMakeFiles/mower_simulation.dir/src/SimRobot.cpp.o
-#13 318.3 /opt/open_mower_ros/src/mower_simulation/src/SimRobot.cpp: In member function ‘void SimRobot::PublishPosition()’:
-#13 318.3 /opt/open_mower_ros/src/mower_simulation/src/SimRobot.cpp:201:47: warning: ‘tf2::Quaternion::Quaternion(const tf2Scalar&, const tf2Scalar&, const tf2Scalar&)’ is deprecated [-Wdeprecated-declarations]
-#13 318.3   201 |   tf2::Quaternion q_mag(0.0, 0.0, pos_heading_);
-#13 318.3       |                                               ^
-#13 318.3 In file included from /opt/open_mower_ros/src/mower_simulation/src/SimRobot.cpp:9:
-#13 318.3 /opt/ros/noetic/include/tf2/LinearMath/Quaternion.h:52:18: note: declared here
-#13 318.3    52 |   ROS_DEPRECATED Quaternion(const tf2Scalar& yaw, const tf2Scalar& pitch, const tf2Scalar& roll)
-#13 318.3       |                  ^~~~~~~~~~
-#13 319.0 [ 81%] Linking CXX shared library /opt/open_mower_ros/devel/lib/libxbot-service-interface.so
-#13 319.6 [ 81%] Built target xbot-service-interface
-#13 320.8 [ 81%] Built target xbot_remote
-#13 320.9 Scanning dependencies of target planner_test
-#13 321.0 [ 81%] Building CXX object mower_utils/CMakeFiles/planner_test.dir/src/planner_test.cpp.o
-#13 321.1 [ 81%] Built target xesc_2040_driver
-#13 321.1 [ 81%] Building CXX object mower_simulation/CMakeFiles/mower_simulation.dir/src/services/imu_service/imu_service.cpp.o
-#13 326.7 [ 81%] Linking CXX shared library /opt/open_mower_ros/devel/lib/libfoxglove_bridge_base.so
-#13 327.6 [ 81%] Built target foxglove_bridge_base
-#13 327.6 [ 81%] Building CXX object mower_simulation/CMakeFiles/mower_simulation.dir/src/services/power_service/power_service.cpp.o
-#13 327.8 [ 82%] Built target xesc_yfr4_driver
-#13 328.0 [ 83%] Built target xesc_driver
-#13 329.1 [ 83%] Building CXX object mower_simulation/CMakeFiles/mower_simulation.dir/src/services/emergency_service/emergency_service.cpp.o
-#13 331.2 [ 83%] Building CXX object mower_simulation/CMakeFiles/mower_simulation.dir/src/services/diff_drive_service/diff_drive_service.cpp.o
-#13 335.4 [ 83%] Linking CXX executable /opt/open_mower_ros/devel/lib/mower_utils/planner_test
-#13 336.0 [ 83%] Built target planner_test
-#13 336.1 Scanning dependencies of target mowgli_generate_messages
-#13 336.2 [ 83%] Built target mowgli_generate_messages
-#13 336.4 [ 83%] Built target xbot_msgs_generate_messages
-#13 336.5 [ 85%] Building CXX object mower_simulation/CMakeFiles/mower_simulation.dir/src/services/mower_service/mower_service.cpp.o
-#13 337.9 [ 85%] Building CXX object mower_simulation/CMakeFiles/mower_simulation.dir/src/services/gps_service/gps_service.cpp.o
-#13 339.8 [ 85%] Built target xbot_rpc_generate_messages
-#13 339.9 [ 85%] Building CXX object mower_simulation/CMakeFiles/mower_simulation.dir/generated/ImuServiceBase.cpp.o
-#13 341.4 [ 85%] Building CXX object mower_simulation/CMakeFiles/mower_simulation.dir/generated/PowerServiceBase.cpp.o
-#13 342.4 [ 86%] Building CXX object mower_simulation/CMakeFiles/mower_simulation.dir/generated/EmergencyServiceBase.cpp.o
-#13 344.1 [ 86%] Building CXX object mower_simulation/CMakeFiles/mower_simulation.dir/generated/DiffDriveServiceBase.cpp.o
-#13 345.0 [ 86%] Building CXX object mower_simulation/CMakeFiles/mower_simulation.dir/generated/MowerServiceBase.cpp.o
-#13 346.3 [ 86%] Building CXX object mower_simulation/CMakeFiles/mower_simulation.dir/generated/GpsServiceBase.cpp.o
-#13 346.9 [ 87%] Built target xbot_rpc
-#13 347.1 [ 87%] Built target xesc_msgs_generate_messages
-#13 347.3 [ 87%] Built target mower_msgs_generate_messages
-#13 347.5 Scanning dependencies of target foxglove_bridge_nodelet
-#13 347.6 [ 87%] Building CXX object foxglove_bridge/CMakeFiles/foxglove_bridge_nodelet.dir/ros1_foxglove_bridge/src/ros1_foxglove_bridge_nodelet.cpp.o
-#13 348.7 [ 87%] Linking CXX executable /opt/open_mower_ros/devel/lib/mower_simulation/mower_simulation
-#13 348.8 [ 87%] Built target mower_map_generate_messages
-#13 348.9 [ 87%] Building CXX object foxglove_bridge/CMakeFiles/foxglove_bridge_nodelet.dir/ros1_foxglove_bridge/src/param_utils.cpp.o
-#13 349.1 [ 87%] Built target mower_map_service
-#13 349.3 [ 88%] Built target mower_simulation
-#13 349.6 [ 88%] Building CXX object mower_comms_v2/CMakeFiles/mower_comms_v2.dir/src/mower_comms.cpp.o
-#13 367.3 [ 88%] Building CXX object foxglove_bridge/CMakeFiles/foxglove_bridge_nodelet.dir/ros1_foxglove_bridge/src/service_utils.cpp.o
-#13 367.6 [ 88%] Built target ftc_local_planner
-#13 367.8 [ 88%] Built target ftc_local_planner_generate_messages
-#13 368.1 [ 88%] Built target heatmap_generator
-#13 368.1 [ 89%] Building CXX object mower_comms_v2/CMakeFiles/mower_comms_v2.dir/src/EmergencyServiceInterface.cpp.o
-#13 386.2 [ 89%] Building CXX object mower_comms_v2/CMakeFiles/mower_comms_v2.dir/src/DiffDriveServiceInterface.cpp.o
-#13 395.2 [ 89%] Building CXX object lib/xbot_monitoring/CMakeFiles/xbot_monitoring.dir/src/xbot_monitoring.cpp.o
-#13 397.3 [ 90%] Built target xbot_sensor_example
-#13 397.6 [ 91%] Built target xbot_positioning
-#13 397.7 [ 91%] Building CXX object mower_comms_v2/CMakeFiles/mower_comms_v2.dir/src/MowerServiceInterface.cpp.o
-#13 404.4 [ 93%] Linking CXX shared library /opt/open_mower_ros/devel/lib/libfoxglove_bridge_nodelet.so
-#13 405.2 [ 93%] Built target foxglove_bridge_nodelet
-#13 405.2 [ 93%] Building CXX object mower_comms_v2/CMakeFiles/mower_comms_v2.dir/src/ImuServiceInterface.cpp.o
-#13 406.4 [ 93%] Built target xbot_positioning_generate_messages
-#13 406.7 [ 93%] Built target mower_logic_generate_messages
-#13 406.8 Scanning dependencies of target mower_logic
-#13 407.0 [ 93%] Building CXX object mower_logic/CMakeFiles/mower_logic.dir/src/mower_logic/mower_logic.cpp.o
-#13 412.0 Scanning dependencies of target monitoring
-#13 412.1 [ 93%] Building CXX object mower_logic/CMakeFiles/monitoring.dir/src/monitoring/monitoring.cpp.o
-#13 420.5 [ 93%] Building CXX object mower_comms_v2/CMakeFiles/mower_comms_v2.dir/src/PowerServiceInterface.cpp.o
-#13 436.2 [ 94%] Building CXX object mower_comms_v2/CMakeFiles/mower_comms_v2.dir/src/GpsServiceInterface.cpp.o
-#13 462.7 [ 94%] Building CXX object mower_comms_v2/CMakeFiles/mower_comms_v2.dir/generated/ImuServiceInterfaceBase.cpp.o
-#13 471.9 [ 94%] Linking CXX executable /opt/open_mower_ros/devel/lib/mower_logic/monitoring
-#13 471.9 [ 94%] Building CXX object mower_comms_v2/CMakeFiles/mower_comms_v2.dir/generated/EmergencyServiceInterfaceBase.cpp.o
-#13 472.6 [ 94%] Built target monitoring
-#13 475.2 [ 94%] Linking CXX executable /opt/open_mower_ros/devel/lib/xbot_monitoring/xbot_monitoring
-#13 476.0 [ 94%] Built target xbot_monitoring
-#13 480.3 [ 94%] Building CXX object mower_comms_v2/CMakeFiles/mower_comms_v2.dir/generated/MowerServiceInterfaceBase.cpp.o
-#13 488.7 [ 94%] Building CXX object mower_comms_v2/CMakeFiles/mower_comms_v2.dir/generated/DiffDriveServiceInterfaceBase.cpp.o
-#13 489.2 [ 94%] Building CXX object mower_logic/CMakeFiles/mower_logic.dir/src/mower_logic/behaviors/UndockingBehavior.cpp.o
-#13 497.2 [ 95%] Building CXX object mower_comms_v2/CMakeFiles/mower_comms_v2.dir/generated/PowerServiceInterfaceBase.cpp.o
-#13 505.7 [ 95%] Building CXX object mower_comms_v2/CMakeFiles/mower_comms_v2.dir/generated/GpsServiceInterfaceBase.cpp.o
-#13 514.2 [ 95%] Linking CXX executable /opt/open_mower_ros/devel/lib/mower_comms_v2/mower_comms_v2
-#13 514.9 [ 96%] Built target mower_comms_v2
-#13 520.3 [ 97%] Building CXX object mower_logic/CMakeFiles/mower_logic.dir/src/mower_logic/behaviors/DockingBehavior.cpp.o
-#13 522.1 [ 97%] Building CXX object mower_logic/CMakeFiles/mower_logic.dir/src/mower_logic/behaviors/IdleBehavior.cpp.o
-#13 542.4 [ 97%] Building CXX object mower_logic/CMakeFiles/mower_logic.dir/src/mower_logic/behaviors/MowingBehavior.cpp.o
-#13 555.1 [ 97%] Building CXX object mower_logic/CMakeFiles/mower_logic.dir/src/mower_logic/behaviors/PerimeterDocking.cpp.o
-#13 576.7 [ 98%] Building CXX object mower_logic/CMakeFiles/mower_logic.dir/src/mower_logic/behaviors/AreaRecordingBehavior.cpp.o
-#13 585.4 /opt/open_mower_ros/src/mower_logic/src/mower_logic/behaviors/AreaRecordingBehavior.cpp: In member function ‘bool AreaRecordingBehavior::getDockingPosition(geometry_msgs::Pose&)’:
-#13 585.4 /opt/open_mower_ros/src/mower_logic/src/mower_logic/behaviors/AreaRecordingBehavior.cpp:477:54: warning: ‘tf2::Quaternion::Quaternion(const tf2Scalar&, const tf2Scalar&, const tf2Scalar&)’ is deprecated [-Wdeprecated-declarations]
-#13 585.4   477 |     tf2::Quaternion docking_orientation(0.0, 0.0, yaw);
-#13 585.4       |                                                      ^
-#13 585.4 In file included from /opt/ros/noetic/include/tf2/LinearMath/Matrix3x3.h:20,
-#13 585.4                  from /opt/ros/noetic/include/tf2/LinearMath/Transform.h:21,
-#13 585.4                  from /opt/open_mower_ros/src/mower_logic/src/mower_logic/behaviors/AreaRecordingBehavior.h:22,
-#13 585.4                  from /opt/open_mower_ros/src/mower_logic/src/mower_logic/behaviors/AreaRecordingBehavior.cpp:15:
-#13 585.4 /opt/ros/noetic/include/tf2/LinearMath/Quaternion.h:52:18: note: declared here
-#13 585.4    52 |   ROS_DEPRECATED Quaternion(const tf2Scalar& yaw, const tf2Scalar& pitch, const tf2Scalar& roll)
-#13 585.4       |                  ^~~~~~~~~~
-#13 605.8 [ 98%] Linking CXX executable /opt/open_mower_ros/devel/lib/mower_logic/mower_logic
-#13 606.7 [ 98%] Built target mower_logic
-#13 607.0 [100%] Built target mower_comms_v1
-#13 607.0 [100%] Built target xesc_driver_node
-#13 607.0 Base path: /opt/open_mower_ros
-#13 607.0 Source space: /opt/open_mower_ros/src
-#13 607.0 Build space: /opt/open_mower_ros/build
-#13 607.0 Devel space: /opt/open_mower_ros/devel
-#13 607.0 Install space: /opt/open_mower_ros/install
-#13 607.0 ####
-#13 607.0 #### Running command: "cmake /opt/open_mower_ros/src -DCATKIN_DEVEL_PREFIX=/opt/open_mower_ros/devel -DCMAKE_INSTALL_PREFIX=/opt/open_mower_ros/install -G Unix Makefiles" in "/opt/open_mower_ros/build"
-#13 607.0 ####
-#13 607.0 ####
-#13 607.0 #### Running command: "make -j4 -l4" in "/opt/open_mower_ros/build"
-#13 607.0 ####
-#13 DONE 607.1s
+#13 [linux/arm64 12/17] RUN source /opt/ros/noetic/setup.bash &&     ccache -z &&     rosdep update || true &&     rosdep install -y --from-paths src --ignore-src       --skip-keys="slic3r_coverage_planner paho-mqtt-cpp" || true &&     CORES=$(nproc) &&     if [ "arm64" = "amd64" ]; then       JOBS=$(( CORES < AMD64_MAX_JOBS ? CORES : AMD64_MAX_JOBS ));       LOAD=$JOBS;     elif [ "arm64" = "arm64" ]; then       JOBS=$(( CORES < ARM64_MAX_JOBS ? CORES : ARM64_MAX_JOBS ));       LOAD=$JOBS;     else       JOBS=2; LOAD=2;     fi &&     echo "Building for arm64 with $CORES cores visible, using -j${JOBS} -l${LOAD}" &&     catkin_make -j${JOBS} -l${LOAD} &&     ccache -s
+#13 CACHED
 
-#14 [ 9/10] COPY foxglove_openmower/scripts/start-foxglove.sh /usr/local/bin/start-foxglove.sh
-#14 DONE 0.0s
+#14 [linux/arm64  2/17] RUN ln -snf /usr/share/zoneinfo/Europe/Paris /etc/localtime && echo Europe/Paris > /etc/timezone
+#14 CACHED
 
-#15 [10/10] RUN chmod +x /usr/local/bin/start-foxglove.sh
-#15 DONE 0.1s
+#15 [linux/arm64 13/17] COPY foxglove_openmower/scripts/start_foxglove.sh /usr/local/bin/foxglove
+#15 CACHED
 
-#16 exporting to docker image format
-#16 exporting layers
-#16 exporting layers 0.7s done
-#16 exporting manifest sha256:f75eaec77d39f910a53c279cb3e1611bb4fa5de6e69a99bd72be4e3c18b34dc6 done
-#16 exporting config sha256:97d5df8680f99d19bd0b24e89b9b0708fdfcf069b1cdd66ca693f644375db94b done
-#16 sending tarball
-#16 sending tarball 3.5s done
-#16 DONE 4.2s
+#16 [linux/arm64 15/17] COPY foxglove_openmower/scripts/start_gps.sh /home/ubuntu/scripts/start_gps.sh
+#16 CACHED
 
-#17 importing to docker
-#17 loading layer 96dbbe1a7865 871.59kB / 871.59kB 0.6s done
-#17 loading layer 5f70bf18a086 32B / 32B 0.6s done
-#17 loading layer 9fd3ca6af469 10.35MB / 10.35MB 0.5s done
-#17 loading layer 8692a0c06ddb 366B / 366B 0.1s done
-#17 loading layer 1d8b40c0038a 366B / 366B 0.1s done
-#17 DONE 0.6s
+#17 [linux/arm64 16/17] COPY foxglove_openmower/openmower_entrypoint.sh /openmower_entrypoint.sh
+#17 CACHED
+
+#18 [linux/arm64  9/17] WORKDIR /opt/open_mower_ros/src
+#18 CACHED
+
+#19 [linux/arm64  3/17] RUN apt-get update && apt-get install -y     git     build-essential     python3-rosdep     python3-catkin-tools     ros-noetic-ros-babel-fish     nlohmann-json3-dev     ccache  && rm -rf /var/lib/apt/lists/*
+#19 CACHED
+
+#20 [linux/arm64  6/17] RUN chmod +x /tmp/patch.sh && /tmp/patch.sh
+#20 CACHED
+
+#21 [linux/arm64 11/17] WORKDIR /opt/open_mower_ros
+#21 CACHED
+
+#22 [linux/arm64  8/17] RUN source /opt/ros/noetic/setup.bash &&     cd /home/ubuntu/rosserial &&     catkin_make -DCMAKE_INSTALL_PREFIX=/opt/ros/noetic install --only-pkg-with-deps rosserial_server
+#22 CACHED
+
+#23 [linux/arm64  5/17] COPY foxglove_openmower/patch.sh /tmp/patch.sh
+#23 CACHED
+
+#24 [linux/arm64 10/17] RUN git clone --branch v2 https://github.com/Mowglifrenchtouch/ros-foxglove-bridge.git foxglove_bridge &&     git clone https://github.com/ClemensElflein/slic3r_coverage_planner.git slic3r_coverage_planner &&     git clone https://github.com/Mowglifrenchtouch/Mowgli_ROS_Package.git &&     mv Mowgli_ROS_Package/mowgli . &&     rm -rf Mowgli_ROS_Package
+#24 CACHED
+
+#25 [linux/arm64  4/17] RUN sed -i 's/output="screen"/unless="\$\(optenv OM_NO_COMMS True\)" output="screen"/g'     /opt/open_mower_ros/src/open_mower/launch/include/_comms.launch
+#25 CACHED
+
+#26 [linux/arm64  7/17] RUN mkdir -p /home/ubuntu/rosserial/src &&     cd /home/ubuntu/rosserial/src &&     git clone https://github.com/tongtybj/rosserial &&     cd rosserial &&     git checkout rosservice_server
+#26 CACHED
+
+#27 [linux/arm64 17/17] RUN chmod +x /openmower_entrypoint.sh &&     chmod +x /usr/local/bin/foxglove &&     chmod +x /home/ubuntu/scripts/start_mowgli.sh&&     chmod +x /home/ubuntu/scripts/start_gps.sh
+#27 CACHED
+
+#28 [linux/amd64  4/17] RUN sed -i 's/output="screen"/unless="\$\(optenv OM_NO_COMMS True\)" output="screen"/g'     /opt/open_mower_ros/src/open_mower/launch/include/_comms.launch
+#28 CACHED
+
+#29 [linux/amd64  5/17] COPY foxglove_openmower/patch.sh /tmp/patch.sh
+#29 DONE 0.0s
+
+#30 [linux/amd64  6/17] RUN chmod +x /tmp/patch.sh && /tmp/patch.sh
+#30 0.096 + echo 'Patching OM'
+#30 0.096 + sed -i 's/output="screen"/unless="\$\(optenv OM_NO_COMMS True\)" output="screen"/g' /opt/open_mower_ros/src/open_mower/launch/include/_comms.launch
+#30 0.096 Patching OM
+#30 DONE 0.1s
+
+#31 [linux/amd64  7/17] RUN mkdir -p /home/ubuntu/rosserial/src &&     cd /home/ubuntu/rosserial/src &&     git clone https://github.com/tongtybj/rosserial &&     cd rosserial &&     git checkout rosservice_server
+#31 0.075 Cloning into 'rosserial'...
+#31 1.155 Branch 'rosservice_server' set up to track remote branch 'rosservice_server' from 'origin'.
+#31 1.155 Switched to a new branch 'rosservice_server'
+#31 DONE 1.2s
+
+#32 [linux/amd64  8/17] RUN source /opt/ros/noetic/setup.bash &&     cd /home/ubuntu/rosserial &&     catkin_make -DCMAKE_INSTALL_PREFIX=/opt/ros/noetic install --only-pkg-with-deps rosserial_server
+#32 0.306 -- The C compiler identification is GNU 9.4.0
+#32 0.364 -- The CXX compiler identification is GNU 9.4.0
+#32 0.368 -- Check for working C compiler: /usr/lib/ccache/cc
+#32 0.489 -- Check for working C compiler: /usr/lib/ccache/cc -- works
+#32 0.490 -- Detecting C compiler ABI info
+#32 0.622 -- Detecting C compiler ABI info - done
+#32 0.639 -- Detecting C compile features
+#32 0.639 -- Detecting C compile features - done
+#32 0.641 -- Check for working CXX compiler: /usr/lib/ccache/c++
+#32 0.781 -- Check for working CXX compiler: /usr/lib/ccache/c++ -- works
+#32 0.783 -- Detecting CXX compiler ABI info
+#32 0.858 -- Detecting CXX compiler ABI info - done
+#32 0.886 -- Detecting CXX compile features
+#32 0.886 -- Detecting CXX compile features - done
+#32 0.935 -- Using CATKIN_DEVEL_PREFIX: /home/ubuntu/rosserial/devel
+#32 0.935 -- Using CMAKE_PREFIX_PATH: /opt/ros/noetic
+#32 0.935 -- This workspace overlays: /opt/ros/noetic
+#32 0.949 -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+#32 0.949 -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+#32 0.949 -- Using Debian Python package layout
+#32 0.969 -- Found PY_em: /usr/lib/python3/dist-packages/em.py  
+#32 0.969 -- Using empy: /usr/lib/python3/dist-packages/em.py
+#32 1.060 -- Using CATKIN_ENABLE_TESTING: ON
+#32 1.060 -- Call enable_testing()
+#32 1.062 -- Using CATKIN_TEST_RESULTS_DIR: /home/ubuntu/rosserial/build/test_results
+#32 1.504 -- Forcing gtest/gmock from source, though one was otherwise available.
+#32 1.504 -- Found gtest sources under '/usr/src/googletest': gtests will be built
+#32 1.504 -- Found gmock sources under '/usr/src/googletest': gmock will be built
+#32 1.536 -- Found PythonInterp: /usr/bin/python3 (found version "3.8.10") 
+#32 1.538 -- Found Threads: TRUE  
+#32 1.541 -- Using Python nosetests: /usr/bin/nosetests3
+#32 1.578 -- catkin 0.8.12
+#32 1.578 -- BUILD_SHARED_LIBS is on
+#32 1.701 -- BUILD_SHARED_LIBS is on
+#32 1.701 -- Using CATKIN_WHITELIST_PACKAGES: rosserial_msgs;rosserial_server
+#32 1.882 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#32 1.882 -- ~~  traversing 2 packages in topological order:
+#32 1.882 -- ~~  - rosserial_msgs
+#32 1.882 -- ~~  - rosserial_server
+#32 1.882 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#32 1.882 -- +++ processing catkin package: 'rosserial_msgs'
+#32 1.882 -- ==> add_subdirectory(rosserial/rosserial_msgs)
+#32 1.888 -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
+#32 1.951 -- rosserial_msgs: 2 messages, 1 services
+#32 2.037 -- +++ processing catkin package: 'rosserial_server'
+#32 2.037 -- ==> add_subdirectory(rosserial/rosserial_server)
+#32 2.097 -- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake (found version "1.71.0") found components: system thread 
+#32 2.100 -- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.8.so (found version "3.8.10") 
+#32 2.184 -- Configuring done
+#32 2.201 -- Generating done
+#32 2.203 -- Build files have been written to: /home/ubuntu/rosserial/build
+#32 2.236 Scanning dependencies of target rosgraph_msgs_generate_messages_lisp
+#32 2.236 Scanning dependencies of target rosgraph_msgs_generate_messages_eus
+#32 2.236 Scanning dependencies of target rosgraph_msgs_generate_messages_cpp
+#32 2.236 Scanning dependencies of target rosgraph_msgs_generate_messages_py
+#32 2.236 Scanning dependencies of target topic_tools_generate_messages_cpp
+#32 2.236 Scanning dependencies of target std_msgs_generate_messages_eus
+#32 2.236 Scanning dependencies of target topic_tools_generate_messages_lisp
+#32 2.236 Scanning dependencies of target _rosserial_msgs_generate_messages_check_deps_RequestParam
+#32 2.236 Scanning dependencies of target std_msgs_generate_messages_nodejs
+#32 2.237 Scanning dependencies of target roscpp_generate_messages_nodejs
+#32 2.237 Scanning dependencies of target _rosserial_msgs_generate_messages_check_deps_Log
+#32 2.237 Scanning dependencies of target roscpp_generate_messages_py
+#32 2.237 Scanning dependencies of target std_msgs_generate_messages_cpp
+#32 2.237 Scanning dependencies of target topic_tools_generate_messages_eus
+#32 2.237 Scanning dependencies of target topic_tools_generate_messages_nodejs
+#32 2.238 Scanning dependencies of target roscpp_generate_messages_eus
+#32 2.238 Scanning dependencies of target std_msgs_generate_messages_lisp
+#32 2.239 Scanning dependencies of target rosgraph_msgs_generate_messages_nodejs
+#32 2.239 Scanning dependencies of target std_msgs_generate_messages_py
+#32 2.239 Scanning dependencies of target _rosserial_msgs_generate_messages_check_deps_TopicInfo
+#32 2.240 Scanning dependencies of target roscpp_generate_messages_lisp
+#32 2.240 Scanning dependencies of target roscpp_generate_messages_cpp
+#32 2.242 Scanning dependencies of target topic_tools_generate_messages_py
+#32 2.245 Scanning dependencies of target rosserial_server_lookup
+#32 2.246 [  0%] Built target rosgraph_msgs_generate_messages_lisp
+#32 2.246 [  0%] Built target rosgraph_msgs_generate_messages_cpp
+#32 2.246 [  0%] Built target rosgraph_msgs_generate_messages_py
+#32 2.247 [  0%] Built target rosgraph_msgs_generate_messages_eus
+#32 2.249 [  0%] Built target roscpp_generate_messages_nodejs
+#32 2.249 [  0%] Built target std_msgs_generate_messages_cpp
+#32 2.249 [  0%] Built target rosgraph_msgs_generate_messages_nodejs
+#32 2.249 [  0%] Built target std_msgs_generate_messages_lisp
+#32 2.249 [  0%] Built target roscpp_generate_messages_py
+#32 2.249 [  0%] Built target topic_tools_generate_messages_cpp
+#32 2.249 [  0%] Built target std_msgs_generate_messages_py
+#32 2.249 [  0%] Built target roscpp_generate_messages_eus
+#32 2.250 [  0%] Built target topic_tools_generate_messages_nodejs
+#32 2.250 [  0%] Built target std_msgs_generate_messages_eus
+#32 2.250 [  0%] Built target std_msgs_generate_messages_nodejs
+#32 2.250 [  0%] Built target topic_tools_generate_messages_lisp
+#32 2.250 [  0%] Built target topic_tools_generate_messages_eus
+#32 2.251 [  0%] Built target topic_tools_generate_messages_py
+#32 2.251 [  0%] Built target roscpp_generate_messages_cpp
+#32 2.252 [  0%] Built target roscpp_generate_messages_lisp
+#32 2.253 [  3%] Building CXX object rosserial/rosserial_server/CMakeFiles/rosserial_server_lookup.dir/src/msg_lookup.cpp.o
+#32 2.268 [  3%] Built target _rosserial_msgs_generate_messages_check_deps_TopicInfo
+#32 2.269 [  3%] Built target _rosserial_msgs_generate_messages_check_deps_RequestParam
+#32 2.270 [  3%] Built target _rosserial_msgs_generate_messages_check_deps_Log
+#32 2.275 Scanning dependencies of target rosserial_msgs_generate_messages_nodejs
+#32 2.275 Scanning dependencies of target rosserial_msgs_generate_messages_cpp
+#32 2.276 Scanning dependencies of target rosserial_msgs_generate_messages_lisp
+#32 2.277 Scanning dependencies of target rosserial_msgs_generate_messages_py
+#32 2.277 Scanning dependencies of target rosserial_msgs_generate_messages_eus
+#32 2.282 [ 11%] Generating C++ code from rosserial_msgs/TopicInfo.msg
+#32 2.282 [ 11%] Generating Javascript code from rosserial_msgs/Log.msg
+#32 2.282 [ 15%] Generating C++ code from rosserial_msgs/Log.msg
+#32 2.282 [ 26%] Generating Javascript code from rosserial_msgs/TopicInfo.msg
+#32 2.282 [ 23%] Generating Python from MSG rosserial_msgs/Log
+#32 2.282 [ 26%] Generating Lisp code from rosserial_msgs/TopicInfo.msg
+#32 2.284 [ 30%] Generating Python code from SRV rosserial_msgs/RequestParam
+#32 2.285 [ 34%] Generating EusLisp code from rosserial_msgs/RequestParam.srv
+#32 2.285 [ 38%] Generating Lisp code from rosserial_msgs/Log.msg
+#32 2.285 [ 42%] Generating EusLisp code from rosserial_msgs/TopicInfo.msg
+#32 2.286 [ 50%] Generating C++ code from rosserial_msgs/RequestParam.srv
+#32 2.286 [ 50%] Generating Javascript code from rosserial_msgs/RequestParam.srv
+#32 2.286 [ 53%] Generating EusLisp code from rosserial_msgs/Log.msg
+#32 2.287 [ 65%] Generating Lisp code from rosserial_msgs/RequestParam.srv
+#32 2.287 [ 65%] Generating Python from MSG rosserial_msgs/TopicInfo
+#32 2.287 [ 65%] Generating EusLisp manifest code for rosserial_msgs
+#32 2.334 [ 65%] Built target rosserial_msgs_generate_messages_nodejs
+#32 2.337 [ 65%] Built target rosserial_msgs_generate_messages_lisp
+#32 2.395 [ 69%] Generating Python srv __init__.py for rosserial_msgs
+#32 2.396 [ 69%] Built target rosserial_msgs_generate_messages_cpp
+#32 2.397 [ 73%] Generating Python msg __init__.py for rosserial_msgs
+#32 2.436 [ 76%] Linking CXX shared library /home/ubuntu/rosserial/devel/lib/librosserial_server_lookup.so
+#32 2.474 [ 76%] Built target rosserial_msgs_generate_messages_eus
+#32 2.483 [ 76%] Built target rosserial_server_lookup
+#32 2.500 [ 76%] Built target rosserial_msgs_generate_messages_py
+#32 2.508 Scanning dependencies of target rosserial_msgs_generate_messages
+#32 2.513 Scanning dependencies of target rosserial_server_socket_node
+#32 2.513 Scanning dependencies of target rosserial_server_serial_node
+#32 2.513 Scanning dependencies of target rosserial_server_udp_socket_node
+#32 2.515 [ 76%] Built target rosserial_msgs_generate_messages
+#32 2.519 [ 84%] Building CXX object rosserial/rosserial_server/CMakeFiles/rosserial_server_udp_socket_node.dir/src/udp_socket_node.cpp.o
+#32 2.519 [ 84%] Building CXX object rosserial/rosserial_server/CMakeFiles/rosserial_server_serial_node.dir/src/serial_node.cpp.o
+#32 2.520 [ 88%] Building CXX object rosserial/rosserial_server/CMakeFiles/rosserial_server_socket_node.dir/src/socket_node.cpp.o
+#32 5.649 [ 92%] Linking CXX executable /home/ubuntu/rosserial/devel/lib/rosserial_server/udp_socket_node
+#32 5.702 [ 96%] Linking CXX executable /home/ubuntu/rosserial/devel/lib/rosserial_server/serial_node
+#32 5.764 [ 96%] Built target rosserial_server_udp_socket_node
+#32 5.810 [ 96%] Built target rosserial_server_serial_node
+#32 5.815 [100%] Linking CXX executable /home/ubuntu/rosserial/devel/lib/rosserial_server/socket_node
+#32 5.917 [100%] Built target rosserial_server_socket_node
+#32 5.927 Install the project...
+#32 5.931 -- Install configuration: ""
+#32 5.931 -- Installing: /opt/ros/noetic/_setup_util.py
+#32 5.935 -- Installing: /opt/ros/noetic/env.sh
+#32 5.935 -- Installing: /opt/ros/noetic/setup.bash
+#32 5.935 -- Installing: /opt/ros/noetic/local_setup.bash
+#32 5.935 -- Installing: /opt/ros/noetic/setup.sh
+#32 5.935 -- Installing: /opt/ros/noetic/local_setup.sh
+#32 5.935 -- Installing: /opt/ros/noetic/setup.zsh
+#32 5.935 -- Installing: /opt/ros/noetic/local_setup.zsh
+#32 5.935 -- Installing: /opt/ros/noetic/setup.fish
+#32 5.935 -- Installing: /opt/ros/noetic/local_setup.fish
+#32 5.935 -- Installing: /opt/ros/noetic/.rosinstall
+#32 5.937 -- Installing: /opt/ros/noetic/share/rosserial_msgs/msg/Log.msg
+#32 5.937 -- Installing: /opt/ros/noetic/share/rosserial_msgs/msg/TopicInfo.msg
+#32 5.937 -- Installing: /opt/ros/noetic/share/rosserial_msgs/srv/RequestParam.srv
+#32 5.937 -- Installing: /opt/ros/noetic/share/rosserial_msgs/cmake/rosserial_msgs-msg-paths.cmake
+#32 5.937 -- Installing: /opt/ros/noetic/include/rosserial_msgs
+#32 5.938 -- Installing: /opt/ros/noetic/include/rosserial_msgs/TopicInfo.h
+#32 5.938 -- Installing: /opt/ros/noetic/include/rosserial_msgs/RequestParamResponse.h
+#32 5.938 -- Installing: /opt/ros/noetic/include/rosserial_msgs/RequestParamRequest.h
+#32 5.938 -- Installing: /opt/ros/noetic/include/rosserial_msgs/Log.h
+#32 5.938 -- Installing: /opt/ros/noetic/include/rosserial_msgs/RequestParam.h
+#32 5.938 -- Installing: /opt/ros/noetic/share/roseus/ros/rosserial_msgs
+#32 5.940 -- Installing: /opt/ros/noetic/share/roseus/ros/rosserial_msgs/manifest.l
+#32 5.940 -- Installing: /opt/ros/noetic/share/roseus/ros/rosserial_msgs/msg
+#32 5.940 -- Installing: /opt/ros/noetic/share/roseus/ros/rosserial_msgs/msg/TopicInfo.l
+#32 5.941 -- Installing: /opt/ros/noetic/share/roseus/ros/rosserial_msgs/msg/Log.l
+#32 5.941 -- Installing: /opt/ros/noetic/share/roseus/ros/rosserial_msgs/srv
+#32 5.941 -- Installing: /opt/ros/noetic/share/roseus/ros/rosserial_msgs/srv/RequestParam.l
+#32 5.941 -- Installing: /opt/ros/noetic/share/common-lisp/ros/rosserial_msgs
+#32 5.943 -- Installing: /opt/ros/noetic/share/common-lisp/ros/rosserial_msgs/msg
+#32 5.943 -- Installing: /opt/ros/noetic/share/common-lisp/ros/rosserial_msgs/msg/_package_TopicInfo.lisp
+#32 5.943 -- Installing: /opt/ros/noetic/share/common-lisp/ros/rosserial_msgs/msg/TopicInfo.lisp
+#32 5.943 -- Installing: /opt/ros/noetic/share/common-lisp/ros/rosserial_msgs/msg/Log.lisp
+#32 5.943 -- Installing: /opt/ros/noetic/share/common-lisp/ros/rosserial_msgs/msg/_package_Log.lisp
+#32 5.943 -- Installing: /opt/ros/noetic/share/common-lisp/ros/rosserial_msgs/msg/_package.lisp
+#32 5.943 -- Installing: /opt/ros/noetic/share/common-lisp/ros/rosserial_msgs/msg/rosserial_msgs-msg.asd
+#32 5.943 -- Installing: /opt/ros/noetic/share/common-lisp/ros/rosserial_msgs/srv
+#32 5.943 -- Installing: /opt/ros/noetic/share/common-lisp/ros/rosserial_msgs/srv/RequestParam.lisp
+#32 5.943 -- Installing: /opt/ros/noetic/share/common-lisp/ros/rosserial_msgs/srv/rosserial_msgs-srv.asd
+#32 5.943 -- Installing: /opt/ros/noetic/share/common-lisp/ros/rosserial_msgs/srv/_package.lisp
+#32 5.943 -- Installing: /opt/ros/noetic/share/common-lisp/ros/rosserial_msgs/srv/_package_RequestParam.lisp
+#32 5.943 -- Installing: /opt/ros/noetic/share/gennodejs/ros/rosserial_msgs
+#32 5.945 -- Installing: /opt/ros/noetic/share/gennodejs/ros/rosserial_msgs/msg
+#32 5.945 -- Installing: /opt/ros/noetic/share/gennodejs/ros/rosserial_msgs/msg/TopicInfo.js
+#32 5.945 -- Installing: /opt/ros/noetic/share/gennodejs/ros/rosserial_msgs/msg/Log.js
+#32 5.945 -- Installing: /opt/ros/noetic/share/gennodejs/ros/rosserial_msgs/msg/_index.js
+#32 5.945 -- Installing: /opt/ros/noetic/share/gennodejs/ros/rosserial_msgs/_index.js
+#32 5.945 -- Installing: /opt/ros/noetic/share/gennodejs/ros/rosserial_msgs/srv
+#32 5.945 -- Installing: /opt/ros/noetic/share/gennodejs/ros/rosserial_msgs/srv/RequestParam.js
+#32 5.945 -- Installing: /opt/ros/noetic/share/gennodejs/ros/rosserial_msgs/srv/_index.js
+#32 5.962 Listing '/home/ubuntu/rosserial/devel/lib/python3/dist-packages/rosserial_msgs'...
+#32 5.962 Compiling '/home/ubuntu/rosserial/devel/lib/python3/dist-packages/rosserial_msgs/__init__.py'...
+#32 5.962 Listing '/home/ubuntu/rosserial/devel/lib/python3/dist-packages/rosserial_msgs/msg'...
+#32 5.962 Compiling '/home/ubuntu/rosserial/devel/lib/python3/dist-packages/rosserial_msgs/msg/_Log.py'...
+#32 5.962 Compiling '/home/ubuntu/rosserial/devel/lib/python3/dist-packages/rosserial_msgs/msg/_TopicInfo.py'...
+#32 5.962 Compiling '/home/ubuntu/rosserial/devel/lib/python3/dist-packages/rosserial_msgs/msg/__init__.py'...
+#32 5.962 Listing '/home/ubuntu/rosserial/devel/lib/python3/dist-packages/rosserial_msgs/srv'...
+#32 5.962 Compiling '/home/ubuntu/rosserial/devel/lib/python3/dist-packages/rosserial_msgs/srv/_RequestParam.py'...
+#32 5.962 Compiling '/home/ubuntu/rosserial/devel/lib/python3/dist-packages/rosserial_msgs/srv/__init__.py'...
+#32 5.964 -- Installing: /opt/ros/noetic/lib/python3/dist-packages/rosserial_msgs
+#32 5.967 -- Installing: /opt/ros/noetic/lib/python3/dist-packages/rosserial_msgs/msg
+#32 5.967 -- Installing: /opt/ros/noetic/lib/python3/dist-packages/rosserial_msgs/msg/_TopicInfo.py
+#32 5.967 -- Installing: /opt/ros/noetic/lib/python3/dist-packages/rosserial_msgs/msg/_Log.py
+#32 5.967 -- Installing: /opt/ros/noetic/lib/python3/dist-packages/rosserial_msgs/msg/__pycache__
+#32 5.967 -- Installing: /opt/ros/noetic/lib/python3/dist-packages/rosserial_msgs/msg/__pycache__/_Log.cpython-38.pyc
+#32 5.967 -- Installing: /opt/ros/noetic/lib/python3/dist-packages/rosserial_msgs/msg/__pycache__/__init__.cpython-38.pyc
+#32 5.967 -- Installing: /opt/ros/noetic/lib/python3/dist-packages/rosserial_msgs/msg/__pycache__/_TopicInfo.cpython-38.pyc
+#32 5.968 -- Installing: /opt/ros/noetic/lib/python3/dist-packages/rosserial_msgs/msg/__init__.py
+#32 5.968 -- Installing: /opt/ros/noetic/lib/python3/dist-packages/rosserial_msgs/__pycache__
+#32 5.968 -- Installing: /opt/ros/noetic/lib/python3/dist-packages/rosserial_msgs/__pycache__/__init__.cpython-38.pyc
+#32 5.968 -- Installing: /opt/ros/noetic/lib/python3/dist-packages/rosserial_msgs/srv
+#32 5.968 -- Installing: /opt/ros/noetic/lib/python3/dist-packages/rosserial_msgs/srv/__pycache__
+#32 5.968 -- Installing: /opt/ros/noetic/lib/python3/dist-packages/rosserial_msgs/srv/__pycache__/_RequestParam.cpython-38.pyc
+#32 5.968 -- Installing: /opt/ros/noetic/lib/python3/dist-packages/rosserial_msgs/srv/__pycache__/__init__.cpython-38.pyc
+#32 5.968 -- Installing: /opt/ros/noetic/lib/python3/dist-packages/rosserial_msgs/srv/_RequestParam.py
+#32 5.968 -- Installing: /opt/ros/noetic/lib/python3/dist-packages/rosserial_msgs/srv/__init__.py
+#32 5.968 -- Installing: /opt/ros/noetic/lib/python3/dist-packages/rosserial_msgs/__init__.py
+#32 5.968 -- Installing: /opt/ros/noetic/lib/pkgconfig/rosserial_msgs.pc
+#32 5.969 -- Installing: /opt/ros/noetic/share/rosserial_msgs/cmake/rosserial_msgs-msg-extras.cmake
+#32 5.969 -- Installing: /opt/ros/noetic/share/rosserial_msgs/cmake/rosserial_msgsConfig.cmake
+#32 5.969 -- Installing: /opt/ros/noetic/share/rosserial_msgs/cmake/rosserial_msgsConfig-version.cmake
+#32 5.969 -- Installing: /opt/ros/noetic/share/rosserial_msgs/package.xml
+#32 5.969 -- Installing: /opt/ros/noetic/lib/pkgconfig/rosserial_server.pc
+#32 5.970 -- Installing: /opt/ros/noetic/share/rosserial_server/cmake/rosserial_serverConfig.cmake
+#32 5.970 -- Installing: /opt/ros/noetic/share/rosserial_server/cmake/rosserial_serverConfig-version.cmake
+#32 5.970 -- Installing: /opt/ros/noetic/share/rosserial_server/package.xml
+#32 5.970 -- Installing: /opt/ros/noetic/lib/librosserial_server_lookup.so
+#32 5.970 -- Installing: /opt/ros/noetic/lib/rosserial_server/serial_node
+#32 5.971 -- Set runtime path of "/opt/ros/noetic/lib/rosserial_server/serial_node" to ""
+#32 5.971 -- Installing: /opt/ros/noetic/lib/rosserial_server/socket_node
+#32 5.971 -- Set runtime path of "/opt/ros/noetic/lib/rosserial_server/socket_node" to ""
+#32 5.971 -- Installing: /opt/ros/noetic/lib/rosserial_server/udp_socket_node
+#32 5.972 -- Set runtime path of "/opt/ros/noetic/lib/rosserial_server/udp_socket_node" to ""
+#32 5.972 -- Installing: /opt/ros/noetic/share/rosserial_server/launch
+#32 5.972 -- Installing: /opt/ros/noetic/share/rosserial_server/launch/serial.launch
+#32 5.972 -- Installing: /opt/ros/noetic/share/rosserial_server/launch/udp_socket.launch
+#32 5.972 -- Installing: /opt/ros/noetic/share/rosserial_server/launch/socket.launch
+#32 5.972 -- Installing: /opt/ros/noetic/include/rosserial_server
+#32 5.972 -- Installing: /opt/ros/noetic/include/rosserial_server/tcp_server.h
+#32 5.972 -- Installing: /opt/ros/noetic/include/rosserial_server/async_read_buffer.h
+#32 5.972 -- Installing: /opt/ros/noetic/include/rosserial_server/session.h
+#32 5.972 -- Installing: /opt/ros/noetic/include/rosserial_server/udp_socket_session.h
+#32 5.972 -- Installing: /opt/ros/noetic/include/rosserial_server/msg_lookup.h
+#32 5.973 -- Installing: /opt/ros/noetic/include/rosserial_server/udp_stream.h
+#32 5.973 -- Installing: /opt/ros/noetic/include/rosserial_server/topic_handlers.h
+#32 5.973 -- Installing: /opt/ros/noetic/include/rosserial_server/serial_session.h
+#32 5.974 Base path: /home/ubuntu/rosserial
+#32 5.974 Source space: /home/ubuntu/rosserial/src
+#32 5.974 Build space: /home/ubuntu/rosserial/build
+#32 5.974 Devel space: /home/ubuntu/rosserial/devel
+#32 5.974 Install space: /opt/ros/noetic
+#32 5.974 Creating symlink "/home/ubuntu/rosserial/src/CMakeLists.txt" pointing to "/opt/ros/noetic/share/catkin/cmake/toplevel.cmake"
+#32 5.974 Whitelisted packages: rosserial_msgs, rosserial_server
+#32 5.974 ####
+#32 5.974 #### Running command: "cmake /home/ubuntu/rosserial/src -DCATKIN_DEVEL_PREFIX=/home/ubuntu/rosserial/devel -DCMAKE_INSTALL_PREFIX=/opt/ros/noetic -DCATKIN_WHITELIST_PACKAGES=rosserial_msgs;rosserial_server -G Unix Makefiles" in "/home/ubuntu/rosserial/build"
+#32 5.974 ####
+#32 5.974 ####
+#32 5.974 #### Running command: "make install -j24 -l24" in "/home/ubuntu/rosserial/build"
+#32 5.974 ####
+#32 DONE 6.0s
+
+#33 [linux/amd64  9/17] WORKDIR /opt/open_mower_ros/src
+#33 DONE 0.0s
+
+#34 [linux/amd64 10/17] RUN git clone --branch v2 https://github.com/Mowglifrenchtouch/ros-foxglove-bridge.git foxglove_bridge &&     git clone https://github.com/ClemensElflein/slic3r_coverage_planner.git slic3r_coverage_planner &&     git clone https://github.com/Mowglifrenchtouch/Mowgli_ROS_Package.git &&     mv Mowgli_ROS_Package/mowgli . &&     rm -rf Mowgli_ROS_Package
+#34 0.053 Cloning into 'foxglove_bridge'...
+#34 0.770 Cloning into 'slic3r_coverage_planner'...
+#34 1.250 Cloning into 'Mowgli_ROS_Package'...
+#34 DONE 1.7s
+
+#35 [linux/amd64 11/17] WORKDIR /opt/open_mower_ros
+#35 DONE 0.0s
+
+#36 [linux/amd64 12/17] RUN source /opt/ros/noetic/setup.bash &&     ccache -z &&     rosdep update || true &&     rosdep install -y --from-paths src --ignore-src       --skip-keys="slic3r_coverage_planner paho-mqtt-cpp" || true &&     CORES=$(nproc) &&     if [ "amd64" = "amd64" ]; then       JOBS=$(( CORES < AMD64_MAX_JOBS ? CORES : AMD64_MAX_JOBS ));       LOAD=$JOBS;     elif [ "amd64" = "arm64" ]; then       JOBS=$(( CORES < ARM64_MAX_JOBS ? CORES : ARM64_MAX_JOBS ));       LOAD=$JOBS;     else       JOBS=2; LOAD=2;     fi &&     echo "Building for amd64 with $CORES cores visible, using -j${JOBS} -l${LOAD}" &&     catkin_make -j${JOBS} -l${LOAD} &&     ccache -s
+#36 0.115 Statistics zeroed
+#36 3.900 reading in sources list data from /etc/ros/rosdep/sources.list.d
+#36 3.900 Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/osx-homebrew.yaml
+#36 3.900 Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/base.yaml
+#36 3.900 Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/python.yaml
+#36 3.900 Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/ruby.yaml
+#36 3.900 Hit https://raw.githubusercontent.com/ros/rosdistro/master/releases/fuerte.yaml
+#36 3.900 Query rosdistro index https://raw.githubusercontent.com/ros/rosdistro/master/index-v4.yaml
+#36 3.900 Skip end-of-life distro "ardent"
+#36 3.900 Skip end-of-life distro "bouncy"
+#36 3.900 Skip end-of-life distro "crystal"
+#36 3.900 Skip end-of-life distro "dashing"
+#36 3.900 Skip end-of-life distro "eloquent"
+#36 3.900 Skip end-of-life distro "foxy"
+#36 3.900 Skip end-of-life distro "galactic"
+#36 3.900 Skip end-of-life distro "groovy"
+#36 3.900 Add distro "humble"
+#36 3.900 Skip end-of-life distro "hydro"
+#36 3.900 Skip end-of-life distro "indigo"
+#36 3.900 Skip end-of-life distro "iron"
+#36 3.900 Skip end-of-life distro "jade"
+#36 3.900 Add distro "jazzy"
+#36 3.900 Add distro "kilted"
+#36 3.900 Skip end-of-life distro "kinetic"
+#36 3.900 Skip end-of-life distro "lunar"
+#36 3.900 Skip end-of-life distro "melodic"
+#36 3.900 Skip end-of-life distro "noetic"
+#36 3.900 Add distro "rolling"
+#36 3.900 updated cache in /root/.ros/rosdep/sources.cache
+#36 3.900 Warning: running 'rosdep update' as root is not recommended.
+#36 3.900   You should run 'sudo rosdep fix-permissions' and invoke 'rosdep update' again without sudo.
+#36 4.233 #All required rosdeps installed successfully
+#36 4.257 Building for amd64 with 24 cores visible, using -j8 -l8
+#36 4.374 -- Using CATKIN_DEVEL_PREFIX: /opt/open_mower_ros/devel
+#36 4.374 -- Using CMAKE_PREFIX_PATH: /opt/ros/noetic
+#36 4.374 -- This workspace overlays: /opt/ros/noetic
+#36 4.388 -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+#36 4.388 -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+#36 4.388 -- Using Debian Python package layout
+#36 4.388 -- Using empy: /usr/lib/python3/dist-packages/em.py
+#36 4.456 -- Using CATKIN_ENABLE_TESTING: ON
+#36 4.456 -- Call enable_testing()
+#36 4.465 -- Using CATKIN_TEST_RESULTS_DIR: /opt/open_mower_ros/build/test_results
+#36 4.488 -- Forcing gtest/gmock from source, though one was otherwise available.
+#36 4.488 -- Found gtest sources under '/usr/src/googletest': gtests will be built
+#36 4.488 -- Found gmock sources under '/usr/src/googletest': gmock will be built
+#36 4.502 -- Found PythonInterp: /usr/bin/python3 (found version "3.8.10") 
+#36 4.505 -- Using Python nosetests: /usr/bin/nosetests3
+#36 4.536 -- catkin 0.8.12
+#36 4.536 -- BUILD_SHARED_LIBS is on
+#36 4.635 -- BUILD_SHARED_LIBS is on
+#36 4.635 -- Using CATKIN_BLACKLIST_PACKAGES: slic3r_coverage_planner
+#36 4.812 WARNING: package "xbot_monitoring" should not depend on metapackage "grid_map" but on its packages instead
+#36 4.818 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#36 4.818 -- ~~  traversing 26 packages in topological order:
+#36 4.818 -- ~~  - mowgli
+#36 4.818 -- ~~  - xbot_framework
+#36 4.818 -- ~~  - xbot_msgs
+#36 4.818 -- ~~  - xbot_rpc
+#36 4.818 -- ~~  - xesc (metapackage)
+#36 4.822 -- ~~  - xesc_interface
+#36 4.822 -- ~~  - xesc_msgs
+#36 4.822 -- ~~  - mower_msgs
+#36 4.822 -- ~~  - ntrip_client
+#36 4.822 -- ~~  - foxglove_bridge
+#36 4.822 -- ~~  - mower_map
+#36 4.822 -- ~~  - mower_comms_v2
+#36 4.822 -- ~~  - vesc_driver
+#36 4.822 -- ~~  - ftc_local_planner
+#36 4.822 -- ~~  - xbot_driver_gps
+#36 4.822 -- ~~  - xbot_monitoring
+#36 4.822 -- ~~  - xbot_positioning
+#36 4.822 -- ~~  - mower_logic
+#36 4.822 -- ~~  - mower_simulation
+#36 4.822 -- ~~  - open_mower
+#36 4.822 -- ~~  - mower_utils
+#36 4.822 -- ~~  - xbot_remote
+#36 4.822 -- ~~  - xesc_2040_driver
+#36 4.822 -- ~~  - xesc_yfr4_driver
+#36 4.822 -- ~~  - xesc_driver
+#36 4.823 -- ~~  - mower_comms_v1
+#36 4.823 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#36 4.823 -- +++ processing catkin package: 'mowgli'
+#36 4.823 -- ==> add_subdirectory(mowgli)
+#36 4.826 -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
+#36 4.888 -- mowgli: 0 messages, 1 services
+#36 5.003 -- +++ processing catkin package: 'xbot_framework'
+#36 5.003 -- ==> add_subdirectory(lib/xbot_framework)
+#36 5.158 -- Using default lwjson_opts.h file
+#36 5.295 -- Using the multi-header code from /opt/open_mower_ros/build/_deps/json-src/include/
+#36 5.772 -- Build spdlog: 1.14.0
+#36 5.781 -- Build type: Release
+#36 7.866 Requirement already satisfied: cbor2==5.6.3 in ./lib/xbot_framework/codegen/.venv/lib/python3.8/site-packages (from -r /opt/open_mower_ros/src/lib/xbot_framework/codegen/requirements.txt (line 1)) (5.6.3)
+#36 7.870 Requirement already satisfied: cogapp==3.4.1 in ./lib/xbot_framework/codegen/.venv/lib/python3.8/site-packages (from -r /opt/open_mower_ros/src/lib/xbot_framework/codegen/requirements.txt (line 2)) (3.4.1)
+#36 7.923 -- Building Service Lib
+#36 7.924 -- Building Service Interface Lib
+#36 7.931 -- +++ processing catkin package: 'xbot_msgs'
+#36 7.931 -- ==> add_subdirectory(lib/xbot_msgs)
+#36 7.946 -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
+#36 8.093 -- xbot_msgs: 10 messages, 1 services
+#36 8.206 -- +++ processing catkin package: 'xbot_rpc'
+#36 8.206 -- ==> add_subdirectory(lib/xbot_rpc)
+#36 8.225 -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
+#36 8.388 -- xbot_rpc: 3 messages, 1 services
+#36 8.511 -- +++ processing catkin metapackage: 'xesc'
+#36 8.511 -- ==> add_subdirectory(lib/xesc_ros/xesc)
+#36 8.549 -- +++ processing catkin package: 'xesc_interface'
+#36 8.549 -- ==> add_subdirectory(lib/xesc_ros/xesc_interface)
+#36 8.671 -- +++ processing catkin package: 'xesc_msgs'
+#36 8.671 -- ==> add_subdirectory(lib/xesc_ros/xesc_msgs)
+#36 8.682 -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
+#36 8.827 -- xesc_msgs: 2 messages, 0 services
+#36 8.932 -- +++ processing catkin package: 'mower_msgs'
+#36 8.932 -- ==> add_subdirectory(mower_msgs)
+#36 8.942 -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
+#36 9.107 -- mower_msgs: 8 messages, 5 services
+#36 9.216 -- +++ processing catkin package: 'ntrip_client'
+#36 9.216 -- ==> add_subdirectory(lib/ntrip_client)
+#36 9.426 -- Installing devel-space wrapper /opt/open_mower_ros/src/lib/ntrip_client/scripts/ntrip_ros.py to /opt/open_mower_ros/devel/lib/ntrip_client
+#36 9.538 -- +++ processing catkin package: 'foxglove_bridge'
+#36 9.538 -- ==> add_subdirectory(foxglove_bridge)
+#36 9.558 -- Found ZLIB: /usr/lib/x86_64-linux-gnu/libz.so (found version "1.2.11") 
+#36 9.559 -- Using standalone ASIO
+#36 9.559 -- Check if the system is big endian
+#36 9.559 -- Searching 16 bit integer
+#36 9.560 -- Check size of unsigned short
+#36 9.651 -- Check size of unsigned short - done
+#36 9.652 -- Using unsigned short
+#36 9.777 -- Check if the system is big endian - little endian
+#36 9.839 -- ROS_VERSION: 1
+#36 9.839 -- ROS_DISTRO: noetic
+#36 9.839 -- ROS_ROOT: /opt/ros/noetic/share/ros
+#36 9.839 -- Building with catkin
+#36 9.871 -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
+#36 10.01 -- Building tests with catkin
+#36 10.06 -- Found GTest: /usr/lib/x86_64-linux-gnu/libgtest.a  
+#36 10.07 -- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake (found version "1.71.0") found components: system 
+#36 10.07 -- +++ processing catkin package: 'mower_map'
+#36 10.07 -- ==> add_subdirectory(mower_map)
+#36 10.10 -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
+#36 10.40 -- mower_map: 1 messages, 7 services
+#36 10.53 -- +++ processing catkin package: 'mower_comms_v2'
+#36 10.53 -- ==> add_subdirectory(mower_comms_v2)
+#36 10.56 -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
+#36 10.62 -- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake (found version "1.71.0")  
+#36 10.73 -- +++ processing catkin package: 'vesc_driver'
+#36 10.73 -- ==> add_subdirectory(lib/xesc_ros/vesc_driver)
+#36 10.90 -- +++ processing catkin package: 'ftc_local_planner'
+#36 10.90 -- ==> add_subdirectory(lib/ftc_local_planner)
+#36 10.94 -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
+#36 11.17 -- ftc_local_planner: 1 messages, 1 services
+#36 11.35 -- +++ processing catkin package: 'xbot_driver_gps'
+#36 11.35 -- ==> add_subdirectory(lib/xbot_driver_gps)
+#36 11.40 -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
+#36 11.65 Source dir of NemaTode = /opt/open_mower_ros/build/lib/xbot_driver_gps/NemaTode/src/NemaTode
+#36 11.65 -- +++ processing catkin package: 'xbot_monitoring'
+#36 11.65 -- ==> add_subdirectory(lib/xbot_monitoring)
+#36 11.69 -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
+#36 11.90 -- +++ processing catkin package: 'xbot_positioning'
+#36 11.90 -- ==> add_subdirectory(lib/xbot_positioning)
+#36 11.93 -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
+#36 12.06 -- xbot_positioning: 1 messages, 2 services
+#36 12.16 -- +++ processing catkin package: 'mower_logic'
+#36 12.16 -- ==> add_subdirectory(mower_logic)
+#36 12.18 -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
+#36 12.44 -- mower_logic: 1 messages, 0 services
+#36 12.56 -- +++ processing catkin package: 'mower_simulation'
+#36 12.56 -- ==> add_subdirectory(mower_simulation)
+#36 12.59 -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
+#36 12.78 -- +++ processing catkin package: 'open_mower'
+#36 12.78 -- ==> add_subdirectory(open_mower)
+#36 12.92 -- +++ processing catkin package: 'mower_utils'
+#36 12.92 -- ==> add_subdirectory(mower_utils)
+#36 13.10 -- +++ processing catkin package: 'xbot_remote'
+#36 13.10 -- ==> add_subdirectory(lib/xbot_remote)
+#36 13.28 -- +++ processing catkin package: 'xesc_2040_driver'
+#36 13.28 -- ==> add_subdirectory(lib/xesc_ros/xesc_2040_driver)
+#36 13.47 -- +++ processing catkin package: 'xesc_yfr4_driver'
+#36 13.47 -- ==> add_subdirectory(lib/xesc_ros/xesc_yfr4_driver)
+#36 13.66 -- +++ processing catkin package: 'xesc_driver'
+#36 13.66 -- ==> add_subdirectory(lib/xesc_ros/xesc_driver)
+#36 13.86 -- +++ processing catkin package: 'mower_comms_v1'
+#36 13.86 -- ==> add_subdirectory(mower_comms_v1)
+#36 14.10 -- Configuring done
+#36 15.32 -- Generating done
+#36 15.34 -- Build files have been written to: /opt/open_mower_ros/build
+#36 15.41 Scanning dependencies of target _mowgli_generate_messages_check_deps_ChargeCtrlSrv
+#36 15.42 [  0%] Built target ulog
+#36 15.42 [  0%] Built target geometry_msgs_generate_messages_nodejs
+#36 15.42 [  1%] Built target heatshrink
+#36 15.42 [  2%] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/spdlog.cpp.o
+#36 15.43 [  2%] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/stdout_sinks.cpp.o
+#36 15.44 [  2%] Built target _xbot_msgs_generate_messages_check_deps_AbsolutePose
+#36 15.44 [  2%] Built target _xbot_msgs_generate_messages_check_deps_RegisterActionsSrv
+#36 15.44 [  2%] Built target _xbot_msgs_generate_messages_check_deps_MapOverlayPolygon
+#36 15.45 [  2%] Built target _mowgli_generate_messages_check_deps_ChargeCtrlSrv
+#36 15.46 [  2%] Built target std_msgs_generate_messages_nodejs
+#36 15.46 [  2%] Built target _xbot_msgs_generate_messages_check_deps_MapOverlay
+#36 15.47 [  2%] Built target _xbot_msgs_generate_messages_check_deps_SensorDataString
+#36 15.49 [  2%] Built target _xbot_msgs_generate_messages_check_deps_WheelTick
+#36 15.49 [  2%] Built target _xbot_msgs_generate_messages_check_deps_SensorDataDouble
+#36 15.49 [  2%] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/color_sinks.cpp.o
+#36 15.50 [  2%] Built target geometry_msgs_generate_messages_lisp
+#36 15.50 [  2%] Built target _xbot_msgs_generate_messages_check_deps_SensorInfo
+#36 15.50 [  2%] Built target _xbot_msgs_generate_messages_check_deps_ActionInfo
+#36 15.50 [  2%] Built target _xbot_msgs_generate_messages_check_deps_MapSize
+#36 15.50 [  2%] Built target _xbot_msgs_generate_messages_check_deps_RobotState
+#36 15.51 [  2%] Built target std_msgs_generate_messages_eus
+#36 15.51 [  2%] Built target std_msgs_generate_messages_lisp
+#36 15.51 [  2%] Built target std_msgs_generate_messages_cpp
+#36 15.51 [  2%] Built target geometry_msgs_generate_messages_eus
+#36 15.51 [  2%] Built target geometry_msgs_generate_messages_cpp
+#36 15.52 [  2%] Built target geometry_msgs_generate_messages_py
+#36 15.53 [  2%] Built target std_msgs_generate_messages_py
+#36 15.55 [  2%] Built target _xbot_rpc_generate_messages_check_deps_RpcError
+#36 15.55 [  2%] Built target _xbot_rpc_generate_messages_check_deps_RegisterMethodsSrv
+#36 15.55 [  2%] Built target _xbot_rpc_generate_messages_check_deps_RpcResponse
+#36 15.55 [  2%] Built target _xbot_rpc_generate_messages_check_deps_RpcRequest
+#36 15.56 [  2%] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/file_sinks.cpp.o
+#36 15.56 [  2%] Built target _xesc_msgs_generate_messages_check_deps_XescStateStamped
+#36 15.57 [  2%] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/async.cpp.o
+#36 15.58 [  2%] Built target _xesc_msgs_generate_messages_check_deps_XescState
+#36 15.58 [  2%] Built target _mower_msgs_generate_messages_check_deps_Emergency
+#36 15.58 [  3%] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/cfg.cpp.o
+#36 15.59 [  3%] Built target _mower_msgs_generate_messages_check_deps_HighLevelControlSrv
+#36 15.61 [  3%] Built target _mower_msgs_generate_messages_check_deps_GPSControlSrv
+#36 15.62 [  3%] Built target _mower_msgs_generate_messages_check_deps_HighLevelStatus
+#36 15.65 [  3%] Built target _mower_msgs_generate_messages_check_deps_EmergencyStopSrv
+#36 15.66 [  3%] Built target _mower_msgs_generate_messages_check_deps_MowerControlSrv
+#36 15.68 [  3%] Built target _mower_msgs_generate_messages_check_deps_ESCStatus
+#36 15.70 [  3%] Built target _mower_msgs_generate_messages_check_deps_DockingSensor
+#36 15.72 [  3%] Built target _mower_msgs_generate_messages_check_deps_Power
+#36 15.74 [  3%] Built target _mower_msgs_generate_messages_check_deps_ImuRaw
+#36 15.76 [  3%] Built target _mower_msgs_generate_messages_check_deps_Status
+#36 15.77 [  3%] Built target _mower_msgs_generate_messages_check_deps_Perimeter
+#36 15.79 Scanning dependencies of target foxglove_bridge_base
+#36 15.79 [  3%] Built target _mower_msgs_generate_messages_check_deps_PerimeterControlSrv
+#36 15.80 [  3%] Building CXX object foxglove_bridge/CMakeFiles/foxglove_bridge_base.dir/foxglove_bridge_base/src/base64.cpp.o
+#36 15.80 Scanning dependencies of target foxglove_bridge
+#36 15.81 [  3%] Building CXX object foxglove_bridge/CMakeFiles/foxglove_bridge.dir/ros1_foxglove_bridge/src/ros1_foxglove_bridge_node.cpp.o
+#36 16.00 [  3%] Building CXX object foxglove_bridge/CMakeFiles/foxglove_bridge_base.dir/foxglove_bridge_base/src/foxglove_bridge.cpp.o
+#36 16.02 [  4%] Building CXX object foxglove_bridge/CMakeFiles/foxglove_bridge_base.dir/foxglove_bridge_base/src/parameter.cpp.o
+#36 16.11 [  4%] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/bundled_fmtlib_format.cpp.o
+#36 16.14 [  4%] Building CXX object foxglove_bridge/CMakeFiles/foxglove_bridge_base.dir/foxglove_bridge_base/src/serialization.cpp.o
+#36 16.26 [  4%] Built target nav_msgs_generate_messages_eus
+#36 16.28 [  4%] Built target tf2_msgs_generate_messages_py
+#36 16.29 Scanning dependencies of target actionlib_msgs_generate_messages_cpp
+#36 16.30 [  4%] Built target actionlib_msgs_generate_messages_cpp
+#36 16.30 Scanning dependencies of target actionlib_generate_messages_cpp
+#36 16.31 [  4%] Built target actionlib_generate_messages_cpp
+#36 16.32 Scanning dependencies of target rosgraph_msgs_generate_messages_nodejs
+#36 16.33 [  4%] Built target rosgraph_msgs_generate_messages_nodejs
+#36 16.33 [  4%] Building CXX object foxglove_bridge/CMakeFiles/foxglove_bridge_base.dir/foxglove_bridge_base/src/server_factory.cpp.o
+#36 16.33 [  4%] Building CXX object foxglove_bridge/CMakeFiles/foxglove_bridge_base.dir/foxglove_bridge_base/src/test/test_client.cpp.o
+#36 16.47 Scanning dependencies of target actionlib_msgs_generate_messages_py
+#36 16.48 [  4%] Built target actionlib_msgs_generate_messages_py
+#36 16.49 Scanning dependencies of target rosgraph_msgs_generate_messages_lisp
+#36 16.50 [  4%] Built target rosgraph_msgs_generate_messages_lisp
+#36 16.51 Scanning dependencies of target actionlib_msgs_generate_messages_eus
+#36 16.52 [  4%] Built target actionlib_msgs_generate_messages_eus
+#36 16.52 Scanning dependencies of target actionlib_generate_messages_lisp
+#36 16.53 [  4%] Built target actionlib_generate_messages_lisp
+#36 16.54 Scanning dependencies of target roscpp_generate_messages_lisp
+#36 16.54 Scanning dependencies of target actionlib_generate_messages_py
+#36 16.54 [  4%] Built target roscpp_generate_messages_lisp
+#36 16.55 [  4%] Built target actionlib_generate_messages_py
+#36 16.55 Scanning dependencies of target roscpp_generate_messages_py
+#36 16.55 Scanning dependencies of target actionlib_generate_messages_nodejs
+#36 16.56 [  4%] Built target roscpp_generate_messages_py
+#36 16.56 [  4%] Built target actionlib_generate_messages_nodejs
+#36 16.57 Scanning dependencies of target actionlib_generate_messages_eus
+#36 16.57 Scanning dependencies of target rosgraph_msgs_generate_messages_cpp
+#36 16.57 [  4%] Built target actionlib_generate_messages_eus
+#36 16.57 [  4%] Built target rosgraph_msgs_generate_messages_cpp
+#36 16.58 Scanning dependencies of target rosgraph_msgs_generate_messages_eus
+#36 16.58 Scanning dependencies of target std_srvs_generate_messages_py
+#36 16.59 [  4%] Built target rosgraph_msgs_generate_messages_eus
+#36 16.59 [  4%] Built target std_srvs_generate_messages_py
+#36 16.59 Scanning dependencies of target roscpp_generate_messages_nodejs
+#36 16.59 Scanning dependencies of target roscpp_generate_messages_cpp
+#36 16.60 [  4%] Built target roscpp_generate_messages_nodejs
+#36 16.60 [  4%] Built target roscpp_generate_messages_cpp
+#36 16.61 [  5%] Building CXX object foxglove_bridge/CMakeFiles/foxglove_bridge_base.dir/foxglove_bridge_base/src/version.cpp.o
+#36 16.61 Scanning dependencies of target roscpp_generate_messages_eus
+#36 16.62 [  5%] Built target roscpp_generate_messages_eus
+#36 16.62 Scanning dependencies of target std_srvs_generate_messages_cpp
+#36 16.62 Scanning dependencies of target std_srvs_generate_messages_eus
+#36 16.63 [  5%] Built target std_srvs_generate_messages_eus
+#36 16.63 [  5%] Built target std_srvs_generate_messages_cpp
+#36 16.64 Scanning dependencies of target std_srvs_generate_messages_lisp
+#36 16.64 Scanning dependencies of target std_srvs_generate_messages_nodejs
+#36 16.65 [  5%] Built target std_srvs_generate_messages_nodejs
+#36 16.65 [  5%] Built target std_srvs_generate_messages_lisp
+#36 16.65 Scanning dependencies of target rosgraph_msgs_generate_messages_py
+#36 16.65 Scanning dependencies of target actionlib_msgs_generate_messages_lisp
+#36 16.66 [  5%] Built target actionlib_msgs_generate_messages_lisp
+#36 16.66 [  5%] Built target rosgraph_msgs_generate_messages_py
+#36 16.67 Scanning dependencies of target actionlib_msgs_generate_messages_nodejs
+#36 16.67 [  5%] Built target actionlib_msgs_generate_messages_nodejs
+#36 16.68 [  5%] Built target tf2_msgs_generate_messages_nodejs
+#36 16.69 [  5%] Built target tf2_msgs_generate_messages_cpp
+#36 16.69 [  5%] Built target tf_generate_messages_eus
+#36 16.70 [  5%] Built target tf_generate_messages_cpp
+#36 16.71 [  5%] Built target tf_generate_messages_nodejs
+#36 16.72 [  5%] Built target topic_tools_generate_messages_py
+#36 16.72 [  5%] Built target tf_generate_messages_py
+#36 16.73 [  5%] Built target topic_tools_generate_messages_nodejs
+#36 16.75 [  5%] Built target _mower_map_generate_messages_check_deps_GetMowingAreaSrv
+#36 16.77 [  5%] Built target _mower_map_generate_messages_check_deps_SetNavPointSrv
+#36 16.79 [  5%] Built target _mower_map_generate_messages_check_deps_ClearNavPointSrv
+#36 16.80 [  5%] Built target _mower_map_generate_messages_check_deps_ClearMapSrv
+#36 16.83 [  5%] Built target _mower_map_generate_messages_check_deps_SetDockingPointSrv
+#36 16.83 [  5%] Built target _mower_map_generate_messages_check_deps_MapArea
+#36 16.86 [  5%] Built target _mower_map_generate_messages_check_deps_AddMowingAreaSrv
+#36 16.87 [  5%] Built target _mower_map_generate_messages_check_deps_GetDockingPointSrv
+#36 16.88 [  5%] Built target topic_tools_generate_messages_lisp
+#36 16.88 [  5%] Built target nav_msgs_generate_messages_lisp
+#36 16.89 [  5%] Built target topic_tools_generate_messages_eus
+#36 16.90 [  5%] Built target tf_generate_messages_lisp
+#36 16.90 [  5%] Built target nav_msgs_generate_messages_py
+#36 16.91 [  5%] Built target tf2_msgs_generate_messages_eus
+#36 16.91 [  5%] Built target sensor_msgs_generate_messages_py
+#36 16.92 [  5%] Built target grid_map_msgs_generate_messages_lisp
+#36 16.93 [  5%] Built target grid_map_msgs_generate_messages_nodejs
+#36 16.93 [  5%] Built target tf2_msgs_generate_messages_lisp
+#36 16.94 [  5%] Built target grid_map_msgs_generate_messages_eus
+#36 16.94 [  5%] Built target nav_msgs_generate_messages_nodejs
+#36 16.95 [  5%] Built target sensor_msgs_generate_messages_cpp
+#36 16.96 [  5%] Built target sensor_msgs_generate_messages_nodejs
+#36 16.96 [  5%] Built target grid_map_msgs_generate_messages_py
+#36 16.97 [  8%] Built target mower_map_generate_messages_nodejs
+#36 16.98 [  8%] Built target nav_msgs_generate_messages_cpp
+#36 16.99 [  8%] Built target visualization_msgs_generate_messages_eus
+#36 16.99 [  8%] Built target sensor_msgs_generate_messages_eus
+#36 17.00 [  8%] Built target sensor_msgs_generate_messages_lisp
+#36 17.01 [  8%] Built target visualization_msgs_generate_messages_cpp
+#36 17.01 [  8%] Built target visualization_msgs_generate_messages_lisp
+#36 17.02 [  8%] Built target visualization_msgs_generate_messages_nodejs
+#36 17.03 [  8%] Built target grid_map_msgs_generate_messages_cpp
+#36 17.04 [  8%] Built target topic_tools_generate_messages_cpp
+#36 17.05 [  8%] Built target visualization_msgs_generate_messages_py
+#36 17.05 [ 10%] Built target mower_map_generate_messages_eus
+#36 17.06 [ 12%] Built target mower_map_generate_messages_cpp
+#36 17.07 [ 13%] Built target mower_map_generate_messages_lisp
+#36 17.08 [ 13%] Built target robot_localization_generate_messages_nodejs
+#36 17.08 [ 13%] Built target geographic_msgs_generate_messages_cpp
+#36 17.09 [ 13%] Built target geographic_msgs_generate_messages_lisp
+#36 17.10 [ 13%] Built target geographic_msgs_generate_messages_eus
+#36 17.10 [ 13%] Linking CXX executable /opt/open_mower_ros/devel/lib/foxglove_bridge/foxglove_bridge
+#36 17.10 [ 13%] Built target diagnostic_msgs_generate_messages_py
+#36 17.11 [ 13%] Built target diagnostic_msgs_generate_messages_lisp
+#36 17.12 [ 13%] Built target diagnostic_msgs_generate_messages_nodejs
+#36 17.12 [ 13%] Built target diagnostic_msgs_generate_messages_cpp
+#36 17.13 [ 13%] Built target robot_localization_generate_messages_lisp
+#36 17.14 [ 13%] Built target diagnostic_msgs_generate_messages_eus
+#36 17.15 [ 13%] Built target geographic_msgs_generate_messages_nodejs
+#36 17.15 [ 13%] Built target uuid_msgs_generate_messages_cpp
+#36 17.17 [ 13%] Built target robot_localization_generate_messages_cpp
+#36 17.17 [ 13%] Built target uuid_msgs_generate_messages_eus
+#36 17.18 [ 13%] Built target uuid_msgs_generate_messages_nodejs
+#36 17.18 [ 13%] Built target robot_localization_generate_messages_py
+#36 17.20 [ 13%] Built target uuid_msgs_generate_messages_py
+#36 17.20 [ 13%] Built target uuid_msgs_generate_messages_lisp
+#36 17.20 [ 13%] Built target foxglove_bridge
+#36 17.21 [ 13%] Built target robot_localization_generate_messages_eus
+#36 17.21 [ 13%] Built target geographic_msgs_generate_messages_py
+#36 17.21 [ 13%] Built target dynamic_reconfigure_generate_messages_py
+#36 17.22 Scanning dependencies of target _catkin_empty_exported_target
+#36 17.23 [ 13%] Built target _catkin_empty_exported_target
+#36 17.24 [ 13%] Built target costmap_2d_generate_messages_py
+#36 17.25 [ 13%] Built target _ftc_local_planner_generate_messages_check_deps_PlannerGetProgress
+#36 17.25 [ 13%] Built target costmap_2d_generate_messages_nodejs
+#36 17.26 [ 13%] Built target _ftc_local_planner_generate_messages_check_deps_PID
+#36 17.26 [ 13%] Built target costmap_2d_generate_messages_eus
+#36 17.27 [ 13%] Built target dynamic_reconfigure_generate_messages_cpp
+#36 17.27 [ 13%] Built target map_msgs_generate_messages_cpp
+#36 17.28 [ 13%] Built target dynamic_reconfigure_generate_messages_eus
+#36 17.28 [ 13%] Built target dynamic_reconfigure_gencfg
+#36 17.28 [ 13%] Built target dynamic_reconfigure_generate_messages_lisp
+#36 17.29 [ 13%] Built target map_msgs_generate_messages_lisp
+#36 17.29 [ 13%] Built target map_msgs_generate_messages_eus
+#36 17.29 [ 13%] Built target map_msgs_generate_messages_nodejs
+#36 17.30 [ 13%] Built target costmap_2d_gencfg
+#36 17.31 [ 13%] Built target costmap_2d_generate_messages_lisp
+#36 17.31 [ 13%] Built target map_msgs_generate_messages_py
+#36 17.32 [ 13%] Built target dynamic_reconfigure_generate_messages_nodejs
+#36 17.32 [ 13%] Built target costmap_2d_generate_messages_cpp
+#36 17.32 [ 13%] Built target ftc_local_planner_generate_messages_nodejs
+#36 17.33 [ 13%] Built target ftc_local_planner_gencfg
+#36 17.33 [ 14%] Built target ftc_local_planner_generate_messages_cpp
+#36 17.34 [ 16%] Built target ftc_local_planner_generate_messages_lisp
+#36 17.35 [ 16%] Performing update step for 'NemaTode'
+#36 17.35 [ 16%] Built target backward_forward_recovery
+#36 17.37 [ 16%] Performing configure step for 'NemaTode'
+#36 17.37 [ 16%] Built target _xbot_positioning_generate_messages_check_deps_SetPoseSrv
+#36 17.38 -- Configuring done
+#36 17.38 [ 16%] Built target _xbot_positioning_generate_messages_check_deps_KalmanState
+#36 17.40 -- Generating done
+#36 17.40 -- Build files have been written to: /opt/open_mower_ros/build/lib/xbot_driver_gps/NemaTode/src/NemaTode-build
+#36 17.41 [ 16%] Built target _xbot_positioning_generate_messages_check_deps_GPSControlSrv
+#36 17.41 [ 16%] Performing build step for 'NemaTode'
+#36 17.42 [ 16%] Built target _mower_logic_generate_messages_check_deps_CheckPoint
+#36 17.42 make[3]: warning: jobserver unavailable: using -j1.  Add '+' to parent make rule.
+#36 17.42 [ 16%] Built target mower_logic_gencfg
+#36 17.43 [ 16%] Built target mbf_msgs_generate_messages_lisp
+#36 17.43 [ 16%] Built target slic3r_coverage_planner_generate_messages_eus
+#36 17.45 [ 16%] Built target mbf_msgs_generate_messages_py
+#36 17.45 [ 60%] Built target NemaTode
+#36 17.45 [ 16%] Built target slic3r_coverage_planner_generate_messages_cpp
+#36 17.46 [ 80%] Built target demo_simple
+#36 17.46 [ 16%] Built target mbf_msgs_generate_messages_nodejs
+#36 17.46 [ 16%] Built target slic3r_coverage_planner_generate_messages_py
+#36 17.47 [100%] Built target demo_advanced
+#36 17.47 [ 16%] Built target slic3r_coverage_planner_generate_messages_nodejs
+#36 17.48 [ 16%] Built target slic3r_coverage_planner_generate_messages_lisp
+#36 17.49 [ 16%] Built target mbf_msgs_generate_messages_eus
+#36 17.49 [ 16%] Built target mbf_msgs_generate_messages_cpp
+#36 17.49 [ 16%] Performing install step for 'NemaTode'
+#36 17.50 Scanning dependencies of target mowgli_generate_messages_lisp
+#36 17.50 Skipping install step.
+#36 17.50 [ 17%] Built target mower_simulation_gencfg
+#36 17.50 [ 17%] Generating Lisp code from mowgli/ChargeCtrlSrv.srv
+#36 17.51 Scanning dependencies of target mowgli_generate_messages_cpp
+#36 17.51 [ 18%] Completed 'NemaTode'
+#36 17.51 [ 18%] Generating C++ code from mowgli/ChargeCtrlSrv.srv
+#36 17.53 [ 18%] Built target mowgli_generate_messages_lisp
+#36 17.53 Scanning dependencies of target mowgli_generate_messages_eus
+#36 17.54 [ 19%] Built target NemaTode
+#36 17.54 [ 19%] Generating EusLisp code from mowgli/ChargeCtrlSrv.srv
+#36 17.54 Scanning dependencies of target mowgli_generate_messages_nodejs
+#36 17.55 [ 20%] Generating Javascript code from mowgli/ChargeCtrlSrv.srv
+#36 17.58 [ 20%] Built target mowgli_generate_messages_nodejs
+#36 17.59 [ 20%] Generating EusLisp manifest code for mowgli
+#36 17.59 Scanning dependencies of target mowgli_generate_messages_py
+#36 17.60 [ 20%] Built target mowgli_generate_messages_cpp
+#36 17.60 [ 20%] Generating Python code from SRV mowgli/ChargeCtrlSrv
+#36 17.62 [ 24%] Built target xbot-service
+#36 17.64 [ 26%] Built target xbot_msgs_generate_messages_nodejs
+#36 17.65 [ 29%] Built target xbot_msgs_generate_messages_lisp
+#36 17.67 [ 33%] Built target xbot_msgs_generate_messages_cpp
+#36 17.70 [ 35%] Built target xbot_msgs_generate_messages_eus
+#36 17.70 [ 35%] Generating Python srv __init__.py for mowgli
+#36 17.71 [ 39%] Built target xbot_msgs_generate_messages_py
+#36 17.73 [ 40%] Built target xbot_rpc_generate_messages_eus
+#36 17.74 [ 41%] Built target xbot_rpc_generate_messages_py
+#36 17.77 [ 41%] Built target xbot_rpc_generate_messages_cpp
+#36 17.79 [ 42%] Built target xbot_rpc_generate_messages_nodejs
+#36 17.80 [ 42%] Built target mowgli_generate_messages_eus
+#36 17.81 [ 43%] Built target xbot_rpc_generate_messages_lisp
+#36 17.81 [ 43%] Built target mowgli_generate_messages_py
+#36 17.81 [ 43%] Built target xbot_rpc_gencpp
+#36 17.82 [ 44%] Built target xesc_msgs_generate_messages_nodejs
+#36 17.82 [ 44%] Built target xesc_msgs_generate_messages_lisp
+#36 17.83 [ 45%] Built target xesc_msgs_generate_messages_cpp
+#36 17.83 [ 47%] Built target xesc_msgs_generate_messages_eus
+#36 17.83 [ 47%] Built target xesc_msgs_generate_messages_py
+#36 17.84 [ 50%] Built target mower_msgs_generate_messages_lisp
+#36 17.85 [ 54%] Built target mower_msgs_generate_messages_cpp
+#36 17.85 [ 57%] Built target mower_msgs_generate_messages_eus
+#36 17.86 [ 60%] Built target mower_msgs_generate_messages_nodejs
+#36 17.86 [ 64%] Built target mower_msgs_generate_messages_py
+#36 17.86 [ 66%] Built target mower_map_generate_messages_py
+#36 17.87 [ 67%] Built target vesc_driver
+#36 17.88 [ 68%] Built target ftc_local_planner_generate_messages_eus
+#36 17.88 [ 68%] Built target ftc_local_planner_generate_messages_py
+#36 17.89 [ 71%] Built target driver_gps_node
+#36 17.89 [ 71%] Built target xbot_positioning_generate_messages_cpp
+#36 17.90 [ 72%] Built target xbot_positioning_generate_messages_py
+#36 17.91 [ 73%] Built target xbot_positioning_generate_messages_nodejs
+#36 17.91 [ 74%] Built target xbot_positioning_generate_messages_eus
+#36 17.91 [ 75%] Built target xbot_positioning_generate_messages_lisp
+#36 17.92 [ 75%] Built target mower_logic_generate_messages_eus
+#36 17.92 [ 77%] Built target mower_logic_generate_messages_cpp
+#36 17.92 [ 78%] Built target mower_logic_generate_messages_py
+#36 17.93 [ 78%] Built target mower_logic_generate_messages_lisp
+#36 17.93 Scanning dependencies of target xbot_pose_converter
+#36 17.93 [ 78%] Built target mower_logic_generate_messages_nodejs
+#36 17.94 Scanning dependencies of target planner_test
+#36 17.94 [ 78%] Building CXX object mower_utils/CMakeFiles/xbot_pose_converter.dir/src/xbot_pose_converter.cpp.o
+#36 17.95 [ 78%] Building CXX object mower_utils/CMakeFiles/planner_test.dir/src/planner_test.cpp.o
+#36 17.96 [ 78%] Built target xbot_remote
+#36 17.98 [ 78%] Built target xesc_2040_driver
+#36 17.99 [ 79%] Built target xesc_yfr4_driver
+#36 18.01 [ 80%] Built target xesc_driver
+#36 18.02 Scanning dependencies of target mowgli_generate_messages
+#36 18.03 [ 80%] Built target mowgli_generate_messages
+#36 18.04 [ 80%] Built target xbot_msgs_generate_messages
+#36 18.06 [ 80%] Built target xbot_rpc_generate_messages
+#36 18.08 [ 81%] Built target xbot_rpc
+#36 18.10 [ 81%] Built target xesc_msgs_generate_messages
+#36 18.12 [ 81%] Built target mower_msgs_generate_messages
+#36 18.15 [ 81%] Built target mower_map_service
+#36 18.16 [ 81%] Built target mower_map_generate_messages
+#36 18.18 [ 81%] Built target ftc_local_planner_generate_messages
+#36 18.18 [ 81%] Built target ftc_local_planner
+#36 18.20 [ 81%] Building CXX object lib/xbot_monitoring/CMakeFiles/xbot_monitoring.dir/src/xbot_monitoring.cpp.o
+#36 18.20 [ 82%] Built target xbot_sensor_example
+#36 18.20 [ 82%] Built target heatmap_generator
+#36 18.22 [ 82%] Built target xbot_positioning_generate_messages
+#36 18.22 [ 83%] Built target xbot_positioning
+#36 18.24 [ 83%] Built target mower_logic_generate_messages
+#36 18.25 Scanning dependencies of target mower_logic
+#36 18.25 Scanning dependencies of target monitoring
+#36 18.26 [ 83%] Building CXX object mower_logic/CMakeFiles/mower_logic.dir/src/mower_logic/mower_logic.cpp.o
+#36 18.26 [ 83%] Building CXX object mower_logic/CMakeFiles/monitoring.dir/src/monitoring/monitoring.cpp.o
+#36 18.83 [ 83%] Linking CXX shared library /opt/open_mower_ros/devel/lib/libspdlog.so
+#36 18.92 [ 83%] Built target spdlog
+#36 18.94 [ 83%] Built target xesc_driver_node
+#36 18.96 [ 85%] Built target mower_comms_v1
+#36 18.97 [ 86%] Building CXX object mower_logic/CMakeFiles/mower_logic.dir/src/mower_logic/behaviors/DockingBehavior.cpp.o
+#36 19.77 [ 86%] Linking CXX executable /opt/open_mower_ros/devel/lib/mower_utils/planner_test
+#36 19.87 [ 86%] Built target planner_test
+#36 19.89 [ 86%] Building CXX object lib/xbot_framework/libxbot-service-interface/CMakeFiles/xbot-service-interface.dir/src/Socket.cpp.o
+#36 19.98 [ 86%] Linking CXX executable /opt/open_mower_ros/devel/lib/mower_utils/xbot_pose_converter
+#36 20.07 [ 86%] Built target xbot_pose_converter
+#36 20.10 [ 86%] Building CXX object mower_simulation/CMakeFiles/mower_simulation.dir/src/mower_simulation.cpp.o
+#36 20.15 [ 87%] Building CXX object lib/xbot_framework/libxbot-service-interface/CMakeFiles/xbot-service-interface.dir/src/ServiceInterfaceBase.cpp.o
+#36 21.94 [ 87%] Building CXX object lib/xbot_framework/libxbot-service-interface/CMakeFiles/xbot-service-interface.dir/src/ServiceDiscoveryImpl.cpp.o
+#36 24.80 [ 87%] Building CXX object mower_logic/CMakeFiles/mower_logic.dir/src/mower_logic/behaviors/UndockingBehavior.cpp.o
+#36 24.91 [ 88%] Building CXX object mower_simulation/CMakeFiles/mower_simulation.dir/src/SimRobot.cpp.o
+#36 26.43 /opt/open_mower_ros/src/mower_simulation/src/SimRobot.cpp: In member function ‘void SimRobot::PublishPosition()’:
+#36 26.43 /opt/open_mower_ros/src/mower_simulation/src/SimRobot.cpp:201:47: warning: ‘tf2::Quaternion::Quaternion(const tf2Scalar&, const tf2Scalar&, const tf2Scalar&)’ is deprecated [-Wdeprecated-declarations]
+#36 26.43   201 |   tf2::Quaternion q_mag(0.0, 0.0, pos_heading_);
+#36 26.43       |                                               ^
+#36 26.43 In file included from /opt/open_mower_ros/src/mower_simulation/src/SimRobot.cpp:9:
+#36 26.43 /opt/ros/noetic/include/tf2/LinearMath/Quaternion.h:52:18: note: declared here
+#36 26.43    52 |   ROS_DEPRECATED Quaternion(const tf2Scalar& yaw, const tf2Scalar& pitch, const tf2Scalar& roll)
+#36 26.43       |                  ^~~~~~~~~~
+#36 26.71 [ 88%] Linking CXX executable /opt/open_mower_ros/devel/lib/mower_logic/monitoring
+#36 26.83 [ 88%] Built target monitoring
+#36 26.84 [ 88%] Building CXX object mower_simulation/CMakeFiles/mower_simulation.dir/src/services/imu_service/imu_service.cpp.o
+#36 27.85 [ 88%] Building CXX object lib/xbot_framework/libxbot-service-interface/CMakeFiles/xbot-service-interface.dir/src/ServiceIO.cpp.o
+#36 28.02 [ 88%] Building CXX object mower_simulation/CMakeFiles/mower_simulation.dir/src/services/power_service/power_service.cpp.o
+#36 28.22 [ 88%] Building CXX object mower_simulation/CMakeFiles/mower_simulation.dir/src/services/emergency_service/emergency_service.cpp.o
+#36 29.61 [ 88%] Building CXX object lib/xbot_framework/libxbot-service-interface/CMakeFiles/xbot-service-interface.dir/src/PlotJugglerBridge.cpp.o
+#36 29.71 [ 88%] Building CXX object mower_simulation/CMakeFiles/mower_simulation.dir/src/services/diff_drive_service/diff_drive_service.cpp.o
+#36 29.74 [ 89%] Building CXX object mower_simulation/CMakeFiles/mower_simulation.dir/src/services/mower_service/mower_service.cpp.o
+#36 30.01 [ 89%] Building CXX object lib/xbot_framework/libxbot-service-interface/CMakeFiles/xbot-service-interface.dir/src/XbotServiceInterface.cpp.o
+#36 30.32 [ 89%] Building CXX object mower_logic/CMakeFiles/mower_logic.dir/src/mower_logic/behaviors/IdleBehavior.cpp.o
+#36 30.32 [ 89%] Linking CXX executable /opt/open_mower_ros/devel/lib/xbot_monitoring/xbot_monitoring
+#36 30.41 [ 89%] Building CXX object mower_logic/CMakeFiles/mower_logic.dir/src/mower_logic/behaviors/MowingBehavior.cpp.o
+#36 30.49 [ 89%] Built target xbot_monitoring
+#36 30.50 [ 90%] Building CXX object lib/xbot_framework/libxbot-service-interface/CMakeFiles/xbot-service-interface.dir/src/RemoteLoggingReceiverImpl.cpp.o
+#36 31.06 [ 90%] Building CXX object mower_simulation/CMakeFiles/mower_simulation.dir/src/services/gps_service/gps_service.cpp.o
+#36 31.10 [ 90%] Building CXX object mower_simulation/CMakeFiles/mower_simulation.dir/generated/ImuServiceBase.cpp.o
+#36 31.34 [ 90%] Building CXX object mower_simulation/CMakeFiles/mower_simulation.dir/generated/PowerServiceBase.cpp.o
+#36 31.35 [ 90%] Building CXX object lib/xbot_framework/libxbot-service-interface/CMakeFiles/xbot-service-interface.dir/src/HeatshrinkEncode.cpp.o
+#36 31.47 [ 91%] Building CXX object mower_simulation/CMakeFiles/mower_simulation.dir/generated/EmergencyServiceBase.cpp.o
+#36 31.64 [ 91%] Building CXX object mower_simulation/CMakeFiles/mower_simulation.dir/generated/DiffDriveServiceBase.cpp.o
+#36 31.69 [ 91%] Building CXX object mower_simulation/CMakeFiles/mower_simulation.dir/generated/MowerServiceBase.cpp.o
+#36 31.94 [ 91%] Building CXX object mower_simulation/CMakeFiles/mower_simulation.dir/generated/GpsServiceBase.cpp.o
+#36 31.95 [ 91%] Building CXX object mower_logic/CMakeFiles/mower_logic.dir/src/mower_logic/behaviors/PerimeterDocking.cpp.o
+#36 32.15 [ 93%] Building CXX object mower_logic/CMakeFiles/mower_logic.dir/src/mower_logic/behaviors/AreaRecordingBehavior.cpp.o
+#36 32.31 [ 93%] Linking CXX executable /opt/open_mower_ros/devel/lib/mower_simulation/mower_simulation
+#36 32.43 [ 94%] Built target mower_simulation
+#36 33.54 /opt/open_mower_ros/src/mower_logic/src/mower_logic/behaviors/AreaRecordingBehavior.cpp: In member function ‘bool AreaRecordingBehavior::getDockingPosition(geometry_msgs::Pose&)’:
+#36 33.54 /opt/open_mower_ros/src/mower_logic/src/mower_logic/behaviors/AreaRecordingBehavior.cpp:477:54: warning: ‘tf2::Quaternion::Quaternion(const tf2Scalar&, const tf2Scalar&, const tf2Scalar&)’ is deprecated [-Wdeprecated-declarations]
+#36 33.54   477 |     tf2::Quaternion docking_orientation(0.0, 0.0, yaw);
+#36 33.54       |                                                      ^
+#36 33.54 In file included from /opt/ros/noetic/include/tf2/LinearMath/Matrix3x3.h:20,
+#36 33.54                  from /opt/ros/noetic/include/tf2/LinearMath/Transform.h:21,
+#36 33.54                  from /opt/open_mower_ros/src/mower_logic/src/mower_logic/behaviors/AreaRecordingBehavior.h:22,
+#36 33.54                  from /opt/open_mower_ros/src/mower_logic/src/mower_logic/behaviors/AreaRecordingBehavior.cpp:15:
+#36 33.54 /opt/ros/noetic/include/tf2/LinearMath/Quaternion.h:52:18: note: declared here
+#36 33.54    52 |   ROS_DEPRECATED Quaternion(const tf2Scalar& yaw, const tf2Scalar& pitch, const tf2Scalar& roll)
+#36 33.54       |                  ^~~~~~~~~~
+#36 37.16 [ 94%] Linking CXX executable /opt/open_mower_ros/devel/lib/mower_logic/mower_logic
+#36 37.31 [ 94%] Built target mower_logic
+#36 37.90 [ 94%] Linking CXX shared library /opt/open_mower_ros/devel/lib/libfoxglove_bridge_base.so
+#36 37.92 [ 94%] Linking CXX shared library /opt/open_mower_ros/devel/lib/libxbot-service-interface.so
+#36 37.98 [ 94%] Built target xbot-service-interface
+#36 37.99 [ 94%] Built target foxglove_bridge_base
+#36 38.00 [ 94%] Building CXX object mower_comms_v2/CMakeFiles/mower_comms_v2.dir/src/ImuServiceInterface.cpp.o
+#36 38.00 [ 94%] Building CXX object mower_comms_v2/CMakeFiles/mower_comms_v2.dir/src/PowerServiceInterface.cpp.o
+#36 38.00 [ 95%] Building CXX object mower_comms_v2/CMakeFiles/mower_comms_v2.dir/src/GpsServiceInterface.cpp.o
+#36 38.00 [ 95%] Building CXX object mower_comms_v2/CMakeFiles/mower_comms_v2.dir/src/mower_comms.cpp.o
+#36 38.00 [ 96%] Building CXX object mower_comms_v2/CMakeFiles/mower_comms_v2.dir/src/EmergencyServiceInterface.cpp.o
+#36 38.00 [ 96%] Building CXX object mower_comms_v2/CMakeFiles/mower_comms_v2.dir/src/DiffDriveServiceInterface.cpp.o
+#36 38.00 [ 96%] Building CXX object mower_comms_v2/CMakeFiles/mower_comms_v2.dir/src/MowerServiceInterface.cpp.o
+#36 38.00 [ 96%] Building CXX object mower_comms_v2/CMakeFiles/mower_comms_v2.dir/generated/ImuServiceInterfaceBase.cpp.o
+#36 39.31 [ 96%] Building CXX object mower_comms_v2/CMakeFiles/mower_comms_v2.dir/generated/EmergencyServiceInterfaceBase.cpp.o
+#36 39.84 [ 96%] Building CXX object mower_comms_v2/CMakeFiles/mower_comms_v2.dir/generated/DiffDriveServiceInterfaceBase.cpp.o
+#36 39.87 [ 96%] Building CXX object mower_comms_v2/CMakeFiles/mower_comms_v2.dir/generated/MowerServiceInterfaceBase.cpp.o
+#36 39.96 [ 97%] Building CXX object mower_comms_v2/CMakeFiles/mower_comms_v2.dir/generated/PowerServiceInterfaceBase.cpp.o
+#36 40.11 [ 97%] Building CXX object mower_comms_v2/CMakeFiles/mower_comms_v2.dir/generated/GpsServiceInterfaceBase.cpp.o
+#36 40.71 Scanning dependencies of target foxglove_bridge_nodelet
+#36 40.72 [ 97%] Building CXX object foxglove_bridge/CMakeFiles/foxglove_bridge_nodelet.dir/ros1_foxglove_bridge/src/ros1_foxglove_bridge_nodelet.cpp.o
+#36 40.79 [ 97%] Building CXX object foxglove_bridge/CMakeFiles/foxglove_bridge_nodelet.dir/ros1_foxglove_bridge/src/param_utils.cpp.o
+#36 40.97 [ 97%] Building CXX object foxglove_bridge/CMakeFiles/foxglove_bridge_nodelet.dir/ros1_foxglove_bridge/src/service_utils.cpp.o
+#36 41.78 [ 97%] Linking CXX executable /opt/open_mower_ros/devel/lib/mower_comms_v2/mower_comms_v2
+#36 41.91 [ 98%] Built target mower_comms_v2
+#36 46.60 [100%] Linking CXX shared library /opt/open_mower_ros/devel/lib/libfoxglove_bridge_nodelet.so
+#36 46.69 [100%] Built target foxglove_bridge_nodelet
+#36 46.70 Base path: /opt/open_mower_ros
+#36 46.70 Source space: /opt/open_mower_ros/src
+#36 46.70 Build space: /opt/open_mower_ros/build
+#36 46.70 Devel space: /opt/open_mower_ros/devel
+#36 46.70 Install space: /opt/open_mower_ros/install
+#36 46.70 ####
+#36 46.70 #### Running command: "cmake /opt/open_mower_ros/src -DCATKIN_DEVEL_PREFIX=/opt/open_mower_ros/devel -DCMAKE_INSTALL_PREFIX=/opt/open_mower_ros/install -G Unix Makefiles" in "/opt/open_mower_ros/build"
+#36 46.70 ####
+#36 46.70 ####
+#36 46.70 #### Running command: "make -j8 -l8" in "/opt/open_mower_ros/build"
+#36 46.70 ####
+#36 46.71 cache directory                     /root/.ccache
+#36 46.71 primary config                      /root/.ccache/ccache.conf
+#36 46.71 secondary config      (readonly)    /etc/ccache.conf
+#36 46.71 stats updated                       Thu Mar 26 15:49:45 2026
+#36 46.71 stats zeroed                        Thu Mar 26 15:49:41 2026
+#36 46.71 cache hit (direct)                     0
+#36 46.71 cache hit (preprocessed)               0
+#36 46.71 cache miss                             0
+#36 46.71 cache hit rate                      0.00 %
+#36 46.71 no input file                          1
+#36 46.71 cleanups performed                     0
+#36 46.71 files in cache                        21
+#36 46.71 cache size                          10.0 MB
+#36 46.71 max cache size                       2.0 GB
+#36 DONE 46.8s
+
+#37 [linux/amd64 13/17] COPY foxglove_openmower/scripts/start_foxglove.sh /usr/local/bin/foxglove
+#37 DONE 0.0s
+
+#38 [linux/amd64 14/17] COPY foxglove_openmower/scripts/start_mowgli.sh /home/ubuntu/scripts/start_mowgli.sh
+#38 DONE 0.0s
+
+#39 [linux/amd64 15/17] COPY foxglove_openmower/scripts/start_gps.sh /home/ubuntu/scripts/start_gps.sh
+#39 DONE 0.0s
+
+#40 [linux/amd64 16/17] COPY foxglove_openmower/openmower_entrypoint.sh /openmower_entrypoint.sh
+#40 DONE 0.0s
+
+#41 [linux/amd64 17/17] RUN chmod +x /openmower_entrypoint.sh &&     chmod +x /usr/local/bin/foxglove &&     chmod +x /home/ubuntu/scripts/start_mowgli.sh&&     chmod +x /home/ubuntu/scripts/start_gps.sh
+#41 DONE 0.1s
+
+#42 exporting to image
+#42 exporting layers
+#42 exporting layers 0.9s done
+#42 exporting manifest sha256:088d108c2d55516dbab854276b354fcc236fb4dc727546140616e76481561f97 done
+#42 exporting config sha256:35f98d7f372aba79f03948f27173a5ef54d55cb4b4b9763d16de45dbaa3de517 done
+#42 exporting attestation manifest sha256:ce16dcf7120eea508fc96efddb4a6b09e562cbbc914fed0888e71920811c962e 0.0s done
+#42 exporting manifest sha256:509c2c9795a747b64449978f0f56c3ad06e777f400754ecc8e2856ac63177eae done
+#42 exporting config sha256:18d88007cf6e45a98dde39b1ea9a8690d97696b621c05f0566aa017a7abbfedb done
+#42 exporting attestation manifest sha256:337d65c43eccc5548e6e4707463214041fab030d23a11048f39b80f50cc0e4e9 0.0s done
+#42 exporting manifest list sha256:5005bbf81c9c9bd50f950b04f038266f946d5371b26117d047e59bb81f799c3b done
+#42 DONE 0.9s
+
+#43 [auth] mowglifrenchtouch/foxglove-bridge:pull,push token for ghcr.io
+#43 DONE 0.0s
+
+#44 exporting cache to client directory
+#44 preparing build cache for export
+#44 preparing build cache for export 0.4s done
+#44 sending cache export
+#44 writing layer sha256:07db15a26edfec15b426bd3face60896e57ff9c65f2de03b7b067657b6399903
+#44 writing layer sha256:02f51ce12667d63afa49a65ca1fc7b40df97710cdedc774bc7f5691034845a1b
+#44 writing layer sha256:0357dbff78e338c4ab3bdf0a02bc25e480d140030cb15cbdfa9029f6fb636241
+#44 writing layer sha256:07db15a26edfec15b426bd3face60896e57ff9c65f2de03b7b067657b6399903 0.0s done
+#44 writing layer sha256:02983bb23c186d9d8f97b9a0dbfbbacabbc6b5df5d54f2ca382b711d21c9009c 0.0s done
+#44 writing layer sha256:0d44d810bbb3a4e214c0719f5659a4b32efe7fa108b013392f0ce3817c6da4ff 0.0s done
+#44 writing layer sha256:0da4792f7f416db06c00bc26bb845d00bd1c6f16f3e10a4c7d0031c91656aa3e 0.0s done
+#44 writing layer sha256:13b7e930469f6d3575a320709035c6acf6f5485a76abcf03d1b92a64c09c2476
+#44 writing layer sha256:1679ea0da59a1556edaba85a9966e6296db829e778f72481bfbe4a9859f6c4c2 0.1s done
+#44 writing layer sha256:18f24305615316b5cb050d7a3457fec8df6bd289e574a900e3e2e597a4f1f40e
+#44 writing layer sha256:0357dbff78e338c4ab3bdf0a02bc25e480d140030cb15cbdfa9029f6fb636241 0.1s done
+#44 writing layer sha256:18f24305615316b5cb050d7a3457fec8df6bd289e574a900e3e2e597a4f1f40e 0.0s done
+#44 writing layer sha256:1ae8861bd103790e4cda14924c8bea583b7487a04ec5d2a1f0a51d87abd27ea3 0.0s done
+#44 writing layer sha256:1e4e4df9cc554570ba72d117493d1541d27656d965cb210383969e2071ea03c1
+#44 writing layer sha256:1f9aeeba745561be551740e415207b4b922472135d3e5ff7ce2fa4e2caeb737f 0.0s done
+#44 writing layer sha256:236fec1006c3522403b0feafac48aeded8531636ac44d158910db311cb217659
+#44 writing layer sha256:236fec1006c3522403b0feafac48aeded8531636ac44d158910db311cb217659 0.2s done
+#44 writing layer sha256:25ea3d5516a29a97424939987c5867151d56c9b66df028b2e0001f5f02080f63
+#44 writing layer sha256:13b7e930469f6d3575a320709035c6acf6f5485a76abcf03d1b92a64c09c2476 0.4s done
+#44 writing layer sha256:1e4e4df9cc554570ba72d117493d1541d27656d965cb210383969e2071ea03c1 0.3s done
+#44 writing layer sha256:25ea3d5516a29a97424939987c5867151d56c9b66df028b2e0001f5f02080f63 0.0s done
+#44 writing layer sha256:2a362b88fa74642c0d8ded0c4b47f01286ff68efc69384264c1ace7481f83319 0.0s done
+#44 writing layer sha256:342ecf093a9124f383e5acc3a78d21be9e4f20515e24b2e0c8169a199d845c1c
+#44 writing layer sha256:42979924a1767f777ffc0f2c0c61928cd0152a951cb4f289c8ac29e3b8d73bca 0.0s done
+#44 writing layer sha256:3f5d29f0dcc45ce9dd6f94e1b82d5d0936bdd3d5b8f647b0b11226363b0a1657
+#44 writing layer sha256:42c5217c75a51cfac73551fa8087504f481a81bc376a19ae78aebe33e8cb6151 0.1s done
+#44 writing layer sha256:44ec4d35b51832ba10874cba068c5f184a55a0f963df5951e8438bb1e775d3a3
+#44 writing layer sha256:44ec4d35b51832ba10874cba068c5f184a55a0f963df5951e8438bb1e775d3a3 0.0s done
+#44 writing layer sha256:46cedee9b5171f1ce5fa27cea17436ccf50bc860f17ab1917f5ce83fd88d480a 0.0s done
+#44 writing layer sha256:4b72de8b90d376ee18bf76e3349228e3588f821779ba1de9bda75b9099257532 0.0s done
+#44 writing layer sha256:4d768bc9d88f86723134d7e11e9d749edc5ed3eb6e4a45789588889f3ed87520 0.0s done
+#44 writing layer sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 0.0s done
+#44 writing layer sha256:3f5d29f0dcc45ce9dd6f94e1b82d5d0936bdd3d5b8f647b0b11226363b0a1657 0.3s done
+#44 writing layer sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 done
+#44 writing layer sha256:508e9bc96367676cccbfe2e39f219bb3c6cb68d1a85c495ed0917a2be8961e12
+#44 writing layer sha256:51137e50a879eed77fa5e094c622289797d7a539c69298fb95f751b26eb8889a 0.0s done
+#44 writing layer sha256:51d041706de82d699907643f129ddab015fb6ed601897be5b8b6873ff8075174 0.0s done
+#44 writing layer sha256:342ecf093a9124f383e5acc3a78d21be9e4f20515e24b2e0c8169a199d845c1c 0.4s done
+#44 writing layer sha256:53e3d6ca9b8d27af7da6f0bb47adf6a8f0a76e3ff625270e890adbc76b3f62c6
+#44 writing layer sha256:53e3d6ca9b8d27af7da6f0bb47adf6a8f0a76e3ff625270e890adbc76b3f62c6 0.2s done
+#44 writing layer sha256:55ebccbb8caa0ce7edeba24913a721fb5f9ef7551866367572dcc386158e2eaa 0.0s done
+#44 writing layer sha256:5619de7e2b622167cb36a5bdadda5667d4efb7176c9735d505f4f52769d50c77 0.0s done
+#44 writing layer sha256:59cc10980325859d6423bbc515001cb577760dc73999bb2e18e811a24877c5cb
+#44 writing layer sha256:5dce350d6ea44ccf7fac3a7bdda0989aca3a6b72ffbfc14104e3b18810c2de33 0.0s done
+#44 writing layer sha256:5dfbcdfd0b57613941270f9d51dd852e2113c510314bc16442dac6b7ccd93bb4 0.0s done
+#44 writing layer sha256:601149b8509b7195185586d90af7ab180c41502198803370741279b866116bb0 0.0s done
+#44 writing layer sha256:606789f27b484b0beb5264f26ccb0656108e42e519fa43aaefe711a0c6f689b6 0.0s done
+#44 writing layer sha256:60ca0507171d76ea79443c6b48e8e4038c3555f8ca12aef4cd82ca0ca7a43786 0.0s done
+#44 writing layer sha256:619857febe1399e2d5fb41a1995487e51d6b04f8bbcb3297c8db10e7775bea6b 0.0s done
+#44 writing layer sha256:624f01a6819356a564e172219c5429c0e4e2bb04abbad9f77f14f7b62b579e71
+#44 writing layer sha256:508e9bc96367676cccbfe2e39f219bb3c6cb68d1a85c495ed0917a2be8961e12 1.5s done
+#44 writing layer sha256:666d1c6315867b31549a03181341fb8f4a0b4bd46de514c6453df8bad0719702
+#44 writing layer sha256:666d1c6315867b31549a03181341fb8f4a0b4bd46de514c6453df8bad0719702 0.1s done
+#44 writing layer sha256:6844fdf4afe16923a101268a6ccd77d931dd3bd631be993aa26008c49a416eca
+#44 writing layer sha256:6844fdf4afe16923a101268a6ccd77d931dd3bd631be993aa26008c49a416eca 0.0s done
+#44 writing layer sha256:6932d16c264574201be5a55ba79dd248dab8a2a0a32b8cdf30af3e1c5e86f806 0.0s done
+#44 writing layer sha256:6a5c0ec5e4b03443f990f4b31586057de69fe60da8605fb8bf70307ca595c368
+#44 writing layer sha256:624f01a6819356a564e172219c5429c0e4e2bb04abbad9f77f14f7b62b579e71 1.6s done
+#44 writing layer sha256:6c240714a1b7806b225c5f9dde0ab272ceaa47a40ac7b752cbe0370bbaf3976e
+#44 writing layer sha256:6c240714a1b7806b225c5f9dde0ab272ceaa47a40ac7b752cbe0370bbaf3976e 0.0s done
+#44 writing layer sha256:6f9cab4e76df8ec2a87814d4b7ac61519a9a8786d329cee9df51b06f8a16ae76 0.0s done
+#44 writing layer sha256:6ff0dea820863ca5fb46b7ed3163c98bf544bf2179cb0dd0c8fd1fe0ce41a5bf 0.0s done
+#44 writing layer sha256:73f86eac5764b45f84c9f74da912d260c33bea9dce19480b68f6d9e8d5c6b757
+#44 writing layer sha256:59cc10980325859d6423bbc515001cb577760dc73999bb2e18e811a24877c5cb 3.4s done
+#44 writing layer sha256:7412ad92fcee31895cf47a91ac273eddcb5d297f5cd19e83bcc5f5dc770bdb1f
+#44 writing layer sha256:7412ad92fcee31895cf47a91ac273eddcb5d297f5cd19e83bcc5f5dc770bdb1f 0.0s done
+#44 writing layer sha256:74ad0f5fc50e01f623134a5617d30b2d7abe61f60456ecba11afe94b8c09ca19 0.0s done
+#44 writing layer sha256:76278554f7ba526bdf46dd10ec47eff5e63714cbf4c4c71fb60b5fc95c8399da 0.1s done
+#44 writing layer sha256:7a3101e41596969047fa9dab2cdb9374191020f6170511987f074452291c8aa6 0.1s done
+#44 writing layer sha256:7ae943c617dc79492d8674198a35fa3031e28b4f472af23b8d7d3288c305ca8d
+#44 writing layer sha256:02f51ce12667d63afa49a65ca1fc7b40df97710cdedc774bc7f5691034845a1b 4.6s done
+#44 writing layer sha256:7ae943c617dc79492d8674198a35fa3031e28b4f472af23b8d7d3288c305ca8d 0.0s done
+#44 writing layer sha256:7dfe7ba888683f139545078f94d76b962fb0a4c3577bfe7778dab7c5147d005a 0.0s done
+#44 writing layer sha256:81a9b0d9c32fea9aeb383dfbfc5a1026bed12f64232bd7640e99d7e8a74dbda4 0.0s done
+#44 writing layer sha256:85112d048ca69cba46cedbe7609be6b1388da46a96c5f25f3074b3d03ed5cada 0.0s done
+#44 writing layer sha256:8f279b8b4b141afaaff95f84af7182a4132d221c8ddfc64da669c6bb2ef702b2
+#44 writing layer sha256:a344d353b0251f0477ad7441b82471cfef6d8b221240e4ec149d8d9be8f2ec3d 0.0s done
+#44 writing layer sha256:aeca02dd121b104d2f6a583c777d8fdde32be8d37e4230a713edf8062273f037
+#44 writing layer sha256:8f279b8b4b141afaaff95f84af7182a4132d221c8ddfc64da669c6bb2ef702b2 0.1s done
+#44 writing layer sha256:aff7d5da8ea48578ca3cd14959b7ed7d6323c813926f3eb666e2f6bdf1bd64b1 0.0s done
+#44 writing layer sha256:b0968bbc08d751a7e9b7089e62b4d98827961059d652501bf953b01541768319 0.0s done
+#44 writing layer sha256:aeca02dd121b104d2f6a583c777d8fdde32be8d37e4230a713edf8062273f037 0.1s done
+#44 writing layer sha256:b96c9101971e6e544417587498e848cd906a5072fe880df3a870c6735f518bf5 0.0s done
+#44 writing layer sha256:ba093d5a9c1aae7479dc3c2eae9681e31ccfa402152b3868ef64dc70ee5918fb 0.0s done
+#44 writing layer sha256:c2b8a37361a09e7b7f54a26ddf2ebb2e1f30a69ae2666584e382352744537193
+#44 writing layer sha256:c319399392fed996cb432aafbbb08c95cf91e53ae1976fe24cd4dc8d638ab251 0.1s done
+#44 writing layer sha256:cbdb7684cdce1ac7440d40c42d1c2ac763fec7703c3058d11dcbbbe703a26535
+#44 writing layer sha256:cbdb7684cdce1ac7440d40c42d1c2ac763fec7703c3058d11dcbbbe703a26535 0.0s done
+#44 writing layer sha256:cff462f4541c29caff38d79807920d008f7fa8377b4905e13fa0bd9ce190052e 0.0s done
+#44 writing layer sha256:d20358ca2eb5aafdeb52607c52f0c03ee909a919235fc1041db00d58da1c59b6 0.1s done
+#44 writing layer sha256:c2b8a37361a09e7b7f54a26ddf2ebb2e1f30a69ae2666584e382352744537193 0.3s done
+#44 writing layer sha256:d28198782de080a091e5f329c1c9216f4d0e545434fb9dda27e61e3dba12d7ee 0.0s done
+#44 writing layer sha256:d448ff8f88cd458b6601c4f2ab4468728fc153d626e321a5ef53383181d892a1 0.0s done
+#44 writing layer sha256:d4ccb8fa71a329af342f16d689bbdcfad38267b70fc05c758b3e971a453b4225 0.0s done
+#44 writing layer sha256:e2511bcc62f0c70b4da79f1f935e209ee591e9ce3a847239974e6d39c8b36ea5 0.0s done
+#44 writing layer sha256:e54dc05a002fc87273191354dc3eaa2434ec25f963a9d6671b8c9df94e647bf0 0.0s done
+#44 writing layer sha256:e8965a1cbf95bb1c0a0fdbf2e84e831095239fa093c88df83b4813cd360bf61d
+#44 writing layer sha256:e95c1b80199516f7360653b823dcd9211cfed397103f63001194335a318b2ed4 0.0s done
+#44 writing layer sha256:ecd83b6c354452b6a9979c7666bba16927f1e60e2afbfe6401dd6f87d5db8576
+#44 writing layer sha256:ecd83b6c354452b6a9979c7666bba16927f1e60e2afbfe6401dd6f87d5db8576 0.4s done
+#44 writing layer sha256:f4f3d213405f84a3d9d9441f62774f76aaaca6d14f6ccfda1e57ba66932c3295
+#44 writing layer sha256:f4f3d213405f84a3d9d9441f62774f76aaaca6d14f6ccfda1e57ba66932c3295 0.0s done
+#44 writing layer sha256:faef86d29a8e72c0f04af35b2fd8656525fe88f33f481fc1e98d199f44b6e4f3 0.0s done
+#44 writing layer sha256:fdf5bbd554b7f7e17128fb0b2b91e274858065c6e48c9be4659adac16fd45096 0.0s done
+#44 writing layer sha256:e8965a1cbf95bb1c0a0fdbf2e84e831095239fa093c88df83b4813cd360bf61d 0.6s done
+#44 writing layer sha256:ff0451913b17a56844e9c92165120da313434cba935ddb3353799081a241b27c 0.0s done
+#44 writing layer sha256:73f86eac5764b45f84c9f74da912d260c33bea9dce19480b68f6d9e8d5c6b757 3.5s done
+#44 writing layer sha256:6a5c0ec5e4b03443f990f4b31586057de69fe60da8605fb8bf70307ca595c368 5.4s done
+#44 sending cache export 7.8s done
+#44 writing config sha256:e9073cc0584ee1f58f17f8b9e82aae0f0caca7a5da4e7c0f53243d4208dbc288 0.0s done
+#44 writing cache image manifest sha256:3d41c3698a07780694ffbe70f2f84de6e59f992b9e9e0fa187eca489b97cede8 0.0s done
+#44 DONE 8.2s
+ERROR: (*service).Write failed: rpc error: code = Unavailable desc = ref layer-sha256:ba093d5a9c1aae7479dc3c2eae9681e31ccfa402152b3868ef64dc70ee5918fb locked for 10.174304ms (since 2026-03-26 15:50:34.513984993 +0100 CET m=+63.474429243): unavailable
+ERROR: (*service).Write failed: rpc error: code = Unavailable desc = ref layer-sha256:ba093d5a9c1aae7479dc3c2eae9681e31ccfa402152b3868ef64dc70ee5918fb locked for 26.455676ms (since 2026-03-26 15:50:34.513984993 +0100 CET m=+63.474429243): unavailable
